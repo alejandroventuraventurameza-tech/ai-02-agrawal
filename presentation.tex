@@ -1,0 +1,185 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,booktabs,graphicx}
+\usepackage{lmodern}
+
+\definecolor{navy}{HTML}{183153}
+\definecolor{teal}{HTML}{2A9D8F}
+\definecolor{coral}{HTML}{D1495B}
+\definecolor{sand}{HTML}{F4EDE4}
+\setbeamercolor{structure}{fg=navy}
+\setbeamercolor{frametitle}{fg=navy}
+\setbeamercolor{title}{fg=navy}
+\setbeamercolor{alerted text}{fg=coral}
+\setbeamercolor{block title}{bg=navy,fg=white}
+\setbeamercolor{block body}{bg=sand,fg=black}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamerfont{title}{size=\Huge,series=\bfseries}
+
+% Replace YOUR-USER once the GitHub remote exists.
+\newcommand{\RepoURL}{https://github.com/YOUR-USER/ai-02-agrawal}
+\newcommand{\sourcefoot}{%
+  \vfill\hfill\scriptsize\color{gray}
+  Source: Agrawal, Gans \& Goldfarb (2025), NBER WP 34034.}
+
+\title{The Economics of Bicycles for the Mind}
+\subtitle{What AI substitutes, what it amplifies, and the variance trap}
+\author{Repository 2 analysis}
+\date{AI \& Economic Modeling \textperiodcentered{} Week of August 24--29}
+
+\begin{document}
+
+%================= TITLE ==============================================
+\begin{frame}[plain]
+  \titlepage
+  \begin{center}\small\color{teal}
+    \texttt{\RepoURL}
+  \end{center}
+\end{frame}
+
+%================= 1. PAPER ===========================================
+\begin{frame}{1 \textperiodcentered{} A tool replaces execution but amplifies judgment}
+  \textbf{Question.} When a cognitive tool makes implementation easier, how do
+  effort, productivity, and inequality change?
+
+  \medskip
+  \begin{columns}[T,onlytextwidth]
+    \column{0.43\textwidth}
+    \textbf{Three human capabilities}
+    \begin{itemize}\small
+      \item $s$: implementation skill
+      \item $\alpha$: payoff judgment
+      \item $(\gamma_0,\gamma)$: opportunity judgment
+    \end{itemize}
+
+    \column{0.53\textwidth}
+    \textbf{The agent's problem}
+    \[
+      \max_{e\ge0}\;
+      \underbrace{p(se;\theta)\alpha\Delta}_{\text{expected improvement}}
+      -\underbrace{c(e;\theta)}_{\text{effort cost}}
+    \]
+    \[
+      V(\theta)=
+      \underbrace{\frac{\gamma_0}{1-\delta\gamma}}_{\Gamma:
+      \text{ opportunity multiplier}}M(e^*(\theta);\theta)
+    \]
+  \end{columns}
+
+  \begin{block}{Single mechanism}
+    The tool lowers the return to extra human implementation effort, while
+    better opportunity judgment multiplies every gain the tool creates.
+  \end{block}
+  \sourcefoot
+\end{frame}
+
+%================= 2. MAIN RESULT =====================================
+\begin{frame}{2 \textperiodcentered{} Proposition 3 is conditional, not a slogan}
+  \small
+  \textbf{Additional assumptions:}
+  $p(se;\theta)=\sqrt{se+\theta}$, $c(e)=e$; mutually independent positive
+  $(\alpha,\gamma_0,\gamma,s)$; $\delta\gamma<1$; and an interior optimum.
+
+  \[
+    V(\theta)=\Gamma\left(\frac{\alpha^2\Delta^2s}{4}+\frac{\theta}{s}\right),
+    \qquad \Gamma=\frac{\gamma_0}{1-\delta\gamma}.
+  \]
+
+  \begin{columns}[T,onlytextwidth]
+    \column{0.47\textwidth}
+    \textbf{Heterogeneity threshold}
+    \[
+      \frac{E[\Gamma^2]}{E[\Gamma]^2}<E[s]E[1/s].
+    \]
+    It makes the initial variance slope negative.
+
+    \column{0.49\textwidth}
+    \textbf{Exact derivative}
+    \[
+      \frac{d\operatorname{Var}(V)}{d\theta}
+      =a_0+2\theta\operatorname{Var}(\Gamma/s).
+    \]
+    It turns at $\theta^*=-a_0/[2\operatorname{Var}(\Gamma/s)]$.
+  \end{columns}
+
+  \begin{alertblock}{Condition missing from the published statement}
+    A positive slope at $\theta=1$ additionally requires $\theta^*<1$.
+    The threshold above proves only $\theta^*>0$.
+  \end{alertblock}
+  \sourcefoot
+\end{frame}
+
+%================= 3. WHAT I DID ======================================
+\begin{frame}{3 \textperiodcentered{} The audit separates total inequality from unequal gains}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.60\textwidth}
+    \IfFileExists{figures/prop3-variance-audit.png}{
+      \includegraphics[width=\linewidth]{figures/prop3-variance-audit.png}
+    }{
+      \fbox{\parbox[c][0.48\textheight][c]{0.95\linewidth}{\centering
+        Run \texttt{python sim.py} to generate the audit figure.}}
+    }
+
+    \column{0.36\textwidth}
+    \textbf{Exact counterexample}
+    \begin{itemize}\small
+      \item $\Gamma=\alpha=1$, $\Delta=4$
+      \item $s\in\{0.6,1\}$, equally likely
+      \item all listed support and moment conditions hold
+      \item effort stays interior on $[0,1]$
+      \item yet $\left.d\operatorname{Var}(V)/d\theta\right|_{1}<0$
+    \end{itemize}
+
+    \textbf{Different object}
+    {\small\[
+      \operatorname{Var}[V(\theta)-V(0)]
+      =\theta^2\operatorname{Var}(\Gamma/s),
+    \]}
+    which increases monotonically.
+  \end{columns}
+  \sourcefoot
+\end{frame}
+
+%================= 4. AI CHECK ========================================
+\begin{frame}{4 \textperiodcentered{} ``Variance is U-shaped in AI'' failed three checks}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.47\textwidth}
+    \textbf{What the loose answer omitted}
+    \begin{enumerate}\small
+      \item The object is cross-sectional $\operatorname{Var}(V(\theta))$.
+      \item The initial decline needs a heterogeneity inequality.
+      \item The sign at one needs $\theta^*<1$.
+      \item The closed form ends when $e^*(\theta)$ hits zero.
+    \end{enumerate}
+
+    \begin{alertblock}{Verdict}
+      \textbf{Incorrect as stated.} The paper proves a local quadratic result
+      under an interior formula, not an unconditional U on all tool qualities.
+    \end{alertblock}
+
+    \column{0.49\textwidth}
+    \textbf{My handwritten verification}
+
+    \IfFileExists{hand/prop3-derivation.jpg}{
+      \includegraphics[width=\linewidth,height=0.53\textheight,keepaspectratio]
+      {hand/prop3-derivation.jpg}
+    }{
+      \IfFileExists{hand/prop3-derivation.png}{
+        \includegraphics[width=\linewidth,height=0.53\textheight,keepaspectratio]
+        {hand/prop3-derivation.png}
+      }{
+        \fbox{\parbox[c][0.45\textheight][c]{0.92\linewidth}{\centering
+          \textbf{Add the real phone photo here}\\[0.7em]
+          \texttt{hand/prop3-derivation.jpg}\\[0.7em]
+          FOC $\to e^*$ $\to$ interior condition $\to$ variance derivative.}}
+      }
+    }
+  \end{columns}
+  \sourcefoot
+\end{frame}
+
+\end{document}
