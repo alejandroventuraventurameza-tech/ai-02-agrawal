@@ -1,0 +1,27 @@
+# LaTeX build artefacts
+*.aux
+*.log
+*.out
+*.toc
+*.nav
+*.snm
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.vrb
+
+# Local analysis artefacts
+__pycache__/
+.pytest_cache/
+tmp/
+
+# The paper is third-party material; keep only its retrieval note in Git
+paper/*.pdf
+
+# The assignment prompt is a local working document
+Prompt*.docx
+
+# Never commit personal documents to a public teaching repository
+DNI*
+*_DNI*
+
