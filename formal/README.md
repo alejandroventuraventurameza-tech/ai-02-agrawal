@@ -1,25 +1,53 @@
-# Formal verification boundary
+# Formal validation boundary
 
-`Proposition3.lean` is a small EconCSLib-compatible check of the algebraic core:
+The algebraic core of Proposition 3 is now machine-checked against
+[EconCSLib](https://github.com/nikhgarg/EconCSLib).
 
-- a negative derivative intercept plus positive slope gives a positive unique
-  turning point;
-- a negative intercept alone does **not** imply a positive derivative at
-  `theta = 1`;
-- the variance of the individual gain is increasing for positive tool quality.
+## Checked claims
 
-It deliberately does not claim to formalize the whole economics paper. A full
-formalization would also have to encode random variables, independence,
-integrability, the constrained optimization problem, and the source-to-Lean
-translation ledger.
+`Proposition3.lean` proves:
 
-To check it with [EconCSLib](https://github.com/nikhgarg/EconCSLib), copy the file
-into an EconCSLib checkout (for example under `papers/AGG25BicyclesForMind/`),
-retain `import EconCSLib`, and run `lake env lean Proposition3.lean` or register
-the file in that project's Lake build.
+- the interior effort candidate is positive exactly under the paper's
+  individual interiority inequality;
+- substitution of the candidate satisfies the cleared first-order condition;
+- the candidate and first-order root give the reported interior value;
+- the individual gain equals `theta Gamma / s`;
+- condition (30) is equivalent to a negative moment gap and implies the
+  negative intercept in equation (83) under positive payoff moments;
+- a negative variance-derivative intercept and positive slope give a unique
+  positive turning point;
+- the derivative is positive at `theta = 1` exactly when that turning point is
+  below one;
+- the paper's listed sign conditions do not imply the endpoint claim;
+- gain variance is strictly increasing over nonnegative tool quality;
+- the rational two-type counterexample has derivative `-14/45` at one and
+  turning point `12/5`.
 
-Status in this repository: the source is prepared for the package; the checked
-mathematical evidence currently comes from the exact symbolic and numerical
-audit in `sim.py`. A successful Lean build receipt should be added before
-claiming machine-checked formalization.
+`exact_audit.py` independently checks the source assumptions, interiority,
+value substitution, moments, endpoint sign, and both variance objects using
+`fractions.Fraction`. It has no third-party dependencies.
 
+## Reproduce
+
+Using an EconCSLib checkout with its pinned dependencies:
+
+```text
+lake env lean <path-to-this-repository>/formal/Proposition3.lean
+python <path-to-this-repository>/formal/exact_audit.py
+```
+
+Checked environment:
+
+```text
+Lean 4.30.0-rc2
+EconCSLib checkout cf500b748ac63dbff55faf97d989d4935c8eff50
+EconCSLib package  95fdc7dc863ff83e9d6c3a68fcb2505540462a4d
+Mathlib package    5450b53e5ddc75d46418fabb605edbf36bd0beb6
+```
+
+## Deliberate boundary
+
+This is not a formalization of the whole economics paper. The probability
+space, independence-to-moment derivation, constrained global optimization, and
+Propositions 1, 2, 4, and 5 remain outside Lean. See
+`VALIDATION_REPORT.md` for the source-to-formalization ledger and exact verdict.

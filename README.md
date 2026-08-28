@@ -94,8 +94,10 @@ $$
 \theta^*=-\frac{a_0}{2\operatorname{Var}(\Gamma/s)}>0.
 $$
 
-**What is proved:** variance initially falls and eventually rises *within the
-region where the interior formula remains valid*.
+**What is proved:** variance initially falls and the extrapolated interior
+formula has a positive algebraic turning point. An economically valid U further
+requires that this turning point lie inside the region where effort remains
+interior.
 
 **What is not implied by (H):** $d\operatorname{Var}(V)/d\theta>0$ at
 $\theta=1$. That additionally requires $\theta^*<1$. The paper states the sign
@@ -135,10 +137,13 @@ for the derivation and [`extensions.md`](extensions.md) for the corrected route.
 |---|---|
 | [`prompts.md`](prompts.md) | Raw prompts and relevant answers, including the variance correction |
 | [`extra/tutorial-prop3.md`](extra/tutorial-prop3.md) | Deep-dive tutorial in Spanish, from the model to Proposition 3 |
+| [`extra/reading-roadmap.md`](extra/reading-roadmap.md) | Dependency map, notation guide, and rigorous reading order |
 | [`sim.py`](sim.py) | Symbolic identities, counterexample, corner solution, and figures |
 | [`figures/`](figures/) | Reproducible outputs from the audit |
 | [`extensions.md`](extensions.md) | Precise extensions and what each changes |
-| [`formal/`](formal/) | EconCSLib/Lean-ready algebraic checks and scope statement |
+| [`formal/Proposition3.lean`](formal/Proposition3.lean) | EconCSLib-checked algebraic core |
+| [`formal/exact_audit.py`](formal/exact_audit.py) | Dependency-free rational audit of the counterexample |
+| [`formal/VALIDATION_REPORT.md`](formal/VALIDATION_REPORT.md) | Claim ledger, build receipt, verdict, and formal boundary |
 | [`hand/`](hand/) | Instructions and destination for the required handwritten photo |
 | [`presentation.tex`](presentation.tex) / `presentation.pdf` | Five-minute Beamer deck |
 | [`paper/`](paper/) | Citation and reproducible retrieval instructions; PDF not committed |
