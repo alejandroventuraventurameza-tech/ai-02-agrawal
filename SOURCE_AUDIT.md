@@ -1,55 +1,133 @@
-# Primary-source and proposition audit — Repository 2
+# Direct primary-source audit — Agrawal, Gans & Goldfarb (2025)
 
-**Version targeted by course issue #1:** Agrawal, Gans and Goldfarb (2025), *The Economics of Bicycles for the Mind*, NBER Working Paper 34034, July 2025. The instructor identifies a **53-page teaching copy** at \`papers/05-agrawal-gans-goldfarb-2025-bicycles-for-the-mind.pdf\`. That file is **not available in the course Git history**: \`papers/.gitignore\` excludes locally downloaded PDFs.
+**Source actually examined:** the user supplied the **53-page July 2025**
+PDF of *The Economics of Bicycles for the Mind*, NBER WP 34034,
+on 23 November 2026. PDF SHA-256:
 
-## What was actually inspected (23 November 2026)
+\`11b8f4eda55480fcb1eaf4ee42598ce9c6640da535ed0fa551fc7597ee7bae8d\`
 
-| Source or evidence | What it directly supports | Scope |
+File size: **456,249 bytes**; 53 pages. The title page identifies
+Ajay K. Agrawal, Joshua S. Gans and Avi Goldfarb, July 2025.
+The third-party copyright-protected PDF is **not republished** in this
+public repository. Publisher record:
+[working paper 34034](https://www.nber.org/papers/w34034);
+[direct original PDF](https://www.nber.org/system/files/working_papers/w34034/w34034.pdf).
+**Pages below refer to printed numbers** (printed p. 18 = PDF page 19);
+later editions may have different pagination.
+
+## Source-to-claim ledger
+
+| Printed pages | What was inspected | Verification |
 | --- | --- | --- |
-| [Professor's issue #1](https://github.com/alexanderquispe/AI-Econ-Modeling/issues/1) and [repository guide](https://github.com/alexanderquispe/AI-Econ-Modeling/blob/main/syllabus/repository-guide.md) | Assignment, required structure, named paper, oral criteria and original due date | **Course instruction checked** |
-| [NBER landing page](https://www.nber.org/papers/w34034) | Correct title/authors/year/DOI, three-capability model, substitution of implementation skill and complementarity with opportunity judgment | **Bibliographic/abstract verified** |
-| [SSRN NBER record](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5350364) | NBER working-paper listing, July 2025 posting and a **later** June 2026 revision | **Version metadata verified** |
-| [User's four-page handwritten proof](hand/prop3-handwritten-full.pdf) | FOC, interior condition, value substitution, variance derivative and the example's invalid success-probability values | **Hand algebra checked**, not an original-paper transcription |
-| [Unit tests](tests/test_proposition3.py) and [Lean proofs](formal/Proposition3.lean) | Exact rational identities and selected downstream real-algebra statements | **Executable checks**, not a proof of the paper's full proposition |
+| 12–13 | \(p(se;\theta)\in[0,1]\), \(\alpha\) as payoff-judgment probability, \(s\in(0,1]\), \(\theta\ge0\); cognitive-tool Definition 1 (monotone success/cost and strictly decreasing marginal ratio) | Text verified |
+| 14; Appendix A.1, 34–35 | Proposition 1: effort falls, per-period effort is stationary, continuation value rises | Statement/proof location checked; not Lean-formalized |
+| 16; Appendix A.2, 36–37 | Proposition 2: judgment complementarities and skill/timing effects | Statement/proof location checked; not Lean-formalized |
+| 17–18 | Section 4 square-root specialization; independence, positive supports, \(\mu_i>3\sigma_i\); \(\Delta>2/(s\sqrt\alpha)\) | Exact printed restrictions verified |
+| 18 | Heterogeneity (30), mean (31), variance signs (32), turning point (33) | **Exact proposition statement** verified |
+| 38–39 | First-order condition (57), effort (58), value (59)–(60), variance setup (64)–(67) | Algebra checked |
+| 40–41 | Variance expansion (68)–(83), linear derivative (81), curvature (84) | Algebra checked |
+| 42 | Turning-point proof (85)–(94) | Algebra checked; its location relative to 1 is not established |
 
-**Access limitation:** The full NBER PDF was attempted from the publisher's direct URL and returned HTTP 403 to the available web reader; it was not embedded in the connected course repository, nor did the alternative public listing supply readable full text. Accordingly, the precise wording, equation numbers, quantifiers and *all* assumptions of **the published Proposition 3** have **not** been certified by a page-by-page comparison. Do not cite a fabricated page number or describe any mathematical qualification below as a confirmed authorial typo. The same title appears in a 49-page SSRN variant; do not silently substitute that version.
+## Finding 1 — Equation (32) asserts an endpoint sign not implied by (30)
 
-## Mathematics independently verified from the stated specialization
-
-For \(\alpha,s,\Gamma,\Delta>0\), \(\delta\gamma<1\), required finite moments, and independence of \(\alpha,\gamma_0,\gamma,s\), consider the specialization written in the repository:
-
+The *published* Proposition 3(b), printed p. 18, says that when
 \[
-p(se;\theta)=\sqrt{se+\theta},\quad c(e)=e,\quad
-e^*=\frac{\alpha^2\Delta^2s}{4}-\frac{\theta}{s},
-\quad
-V=\Gamma\left(\frac{\alpha^2\Delta^2s}{4}+\frac{\theta}{s}\right).
+\frac{E[\Gamma^2]}{(E[\Gamma])^2}<E[s]E[1/s] \tag{30}
 \]
+then \(\operatorname{Var}'(V(0))<0\) **and**
+\(\operatorname{Var}'(V(1))>0\), equation (32).
 
-**Domain:** These expressions are for \(e^*>0\), i.e., \(\theta<\alpha^2\Delta^2s^2/4\) for every realized type. A statement at \(\theta=1\) needs that bound there. Nonnegative effort without this bound requires recomputing corners.
-
-Let \(A=\Delta^2\Gamma\alpha^2s/4\) and \(B=\Gamma/s\), so \(V=A+\theta B\). Independence gives
-
+The paper's *own* Appendix A.3, printed p. 41, proves equation (81):
 \[
-2\operatorname{Cov}(A,B)
-=\frac{\Delta^2E[\alpha^2]}{2}
-\big[E[\Gamma^2]-E[\Gamma]^2E[s]E[1/s]\big]
-=:a_0,
-\quad
-\frac{d\operatorname{Var}(V)}{d\theta}
-=a_0+2\theta\operatorname{Var}(B).
+\operatorname{Var}'(V(\theta))=a_0+2\theta q,\quad
+q=\operatorname{Var}(\Gamma/s)>0,
 \]
+\[
+a_0=\frac{\Delta^2E[\alpha^2]}2
+\{E[\Gamma^2]-(E[\Gamma])^2E[s]E[1/s]\}.
+\]
+The restriction (30) implies \(a_0<0\), **not**
+\(a_0+2q>0\). The latter requires
+\[
+\boxed{\theta^*=-a_0/(2q)<1}
+\]
+as well as validity of the common interior solution at \(\theta=1\).
+The proof (pp. 41–42) establishes \(\theta^*>0\), not
+\(\theta^*<1\). Thus a precise **source-confirmed missing
+sufficient-condition implication** is present.
 
-The *heterogeneity condition* \(E[\Gamma^2]/E[\Gamma]^2<E[s]E[1/s]\) makes \(a_0<0\). If \(q=\operatorname{Var}(B)>0\), there is an algebraic turning point \(\theta^*=-a_0/(2q)>0\). **It does not follow** that \(\theta^*<1\), or that the common interior formula is valid at that point. To claim \(\operatorname{Var}'(1)>0\), independently check \(a_0+2q>0\) **and** interiority.
+Algebraic witness: equally likely \(s\in\{3/5,1\}\),
+\(\alpha=\Gamma=1\), \(\Delta=4\) yields
+\(E[s]E[1/s]=16/15>1\), \(a_0=-8/15\),
+\(q=1/9\), \(\theta^*=12/5\) and
+\(\operatorname{Var}'(V(1))=-14/45\).
+This satisfies the paper's **printed heterogeneity and
+interiority inequalities**, but its fitted success index exceeds
+one; it is **not** a complete probability-admissible countermodel.
+The logical gap in the algebra should not be conflated with
+consistency of all probability primitives.
 
-Individual gains \(G_i(\theta)=V_i(\theta)-V_i(0)=\theta B_i\) have \(\operatorname{Var}(G(\theta))=\theta^2 q\) **within the common interior region**. This is not the variance of total value levels, nor a variance of AI predictions.
+## Finding 2 — The printed effort-positivity condition is insufficient
 
-### Two-type illustration and probability-domain caveat
+Printed pp. 18 and 39 explicitly state
+\[
+\Delta>\frac{2}{s\sqrt{\alpha}}
+\]
+as an effort-positivity restriction. But equation (58) is
+\(e^*(\theta)=\alpha^2\Delta^2s/4-\theta/s\), hence
+\[
+e^*(1)>0\iff \Delta>\frac{2}{s\alpha}.
+\]
+For \(0<\alpha<1\), the printed restriction is weaker.
+**Exact witness:** with \(\alpha=1/4\), \(s=1\),
+\(\Delta=5\), the original inequality \(\Delta>4\) holds,
+yet \(e^*(1)=-39/64<0\), since the necessary
+threshold is \(\Delta>8\). This is a separate
+source-verified domain error.
 
-For \(s\in\{3/5,1\}\) equally likely, \(\alpha=\Gamma=1,\Delta=4\):
-\(1<16/15\), \(a_0=-8/15\), \(q=1/9\), \(\operatorname{Var}'(1)=-14/45<0\), and \(\theta^*=12/5\). The first effort corner occurs at \(36/25<12/5\). But \(p^*=\alpha\Delta s/2\in\{6/5,2\}>1\). It refutes **the algebraic inference from (H) alone to a positive endpoint derivative**, not an economically admissible probability model. In [our modified capped model](extra/bounded-probability-variant.md) the success probability is bounded and the value variance decreases while gain variance rises; saturation introduces a kink, so it is **not** claimed to satisfy all original paper assumptions.
+## Finding 3 — Success probability and square-root domain conflict
 
-## Outstanding source check — exact procedure
+The general model defines \(p(se;\theta)\in[0,1]\) on
+printed p. 12. Section 4 uses
+\[
+p(se;\theta)=\sqrt{se+\theta}
+\]
+on printed p. 17. At \(\theta=1\), any \(e>0\)
+and \(s>0\) imply
+\(\sqrt{se+1}>1\), violating the stipulated probability
+bound. For \(\theta>1\), even \(e=0\) gives a value above one.
 
-To resolve textual fidelity, obtain the instructor's **July 2025 53-page PDF** (not a different SSRN revision), confirm checksum and version, then compare: Proposition 1–3 statements; Definition of a cognitive tool; equations for \(p,c,e^*,V,\Gamma\); joint-support, independence and moment assumptions; the heterogeneity inequality and any claimed endpoint sign; and the appendix's treatment of effort corners and success-probability bounds. Record **actual PDF pages and exact quoted hypotheses** only after reading that file. Do not call this source-to-text check completed in its absence.
+Moreover, equation (58)'s **positive** effort at \(\theta=1\)
+requires \(\alpha\Delta s>2\); the interior FOC implies
+\(p^*=\alpha\Delta s/2>1\). Thus no positive-effort
+interior regime at quality one can satisfy this original
+literal probability specification. The original algebra
+can be interpreted as an unbounded success *index*,
+but that is a different primitive from a probability.
 
-This audit distinguishes **verified mathematics**, **verified source metadata**, and **unverified published wording**. The student's professor-approved extension and digital handwriting are administrative matters, not substitutes for primary-source verification.
+## What remains valid, and what is not claimed
+
+The effort FOC, interior value and variance polynomial
+are valid **as algebra** on their common interior region.
+The initial variance decline under (30), and a positive
+*algebraic* turning point, are established. The endpoint
+sign at one is not a consequence of (30) alone;
+the variance of individual gains
+\(\theta^2\operatorname{Var}(\Gamma/s)\) is a
+different object from level inequality.
+
+[Our separate capped variant](extra/bounded-probability-variant.md)
+\(p=\min\{1,\sqrt{se+\theta}\}\) restores the bound,
+but creates a kink and a flat region. It does **not**
+automatically satisfy the original smooth and strict
+marginal-ratio assumptions, so we do not call it a
+counterexample to *all* hypotheses of the original theorem.
+
+Exact necessary-condition regressions are in
+[tests/test_source_conditions.py](tests/test_source_conditions.py);
+the six existing Lean lemmas prove only their encoded algebra.
+We have checked the **primary text** for the model,
+Propositions 1–3 and Appendix A.1–A.3, but have **not**
+formally reproved every claim in the 53-page manuscript or
+received any author-issued correction. The instructor has
+approved the student's deadline extension and digital handwriting.

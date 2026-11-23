@@ -5,9 +5,11 @@ on:
     branches:
       - audit/issue-1-finalization-20261122
       - audit/issue-1-editorial-source-20261123
+      - audit/issue-1-primary-source-20261123
     paths:
       - "README.md"
       - "SOURCE_AUDIT.md"
+      - "paper/**"
       - "AUDIT.md"
       - "extra/**"
       - "presentation.tex"

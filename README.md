@@ -35,10 +35,23 @@ a_0=\frac{\Delta^2E[\alpha^2]}2
 
 The heterogeneity inequality \(E[\Gamma^2]/E[\Gamma]^2<\mu_sE[1/s]\) gives \(a_0<0\): initial **level** variance decreases. With \(q>0\), the algebraic turning point is \(\theta^*=-a_0/(2q)>0\); a **positive slope at \(\theta=1\)** additionally requires \(\theta^*<1\) and a valid common interior region there. Distinctly, the variance of **individual gains** equals \(\theta^2q\) while interior. This is not a universal U-shaped inequality theorem.
 
+## Original-paper verification: three specific gaps
+
+The July 2025 PDF now has been **read directly**, not inferred from
+a secondary description (printed pp. 12, 18 and 38–42).
+Proposition 3(b), eq. (32), asserts a positive variance slope
+at \(\theta=1\), but its proof (81) only establishes \(a_0<0\):
+one must additionally check \(\theta^*<1\).
+The printed interiority bound \(\Delta>2/(s\sqrt\alpha)\)
+does not guarantee \(e^*(1)>0\) (which needs
+\(\Delta>2/(s\alpha)\)). Finally, \(p(se;1)=\sqrt{se+1}>1\)
+for \(e>0\), conflicting with the source's probability bound.
+See the [primary-PDF audit, with exact page citations](SOURCE_AUDIT.md).
+
 ## Independent check, evidence, and reproduction
 
 The [handwritten four-page proof](hand/prop3-handwritten-full.pdf) and [slide image](hand/prop3-derivation.jpg) check an algebraic two-type example with \(\operatorname{Var}'(1)=-14/45\). Its fitted \(\sqrt{se+\theta}\) exceeds 1, however, so it is **not a calibrated probability example**. Our [separate capped-probability extension](extra/bounded-probability-variant.md) is analyzed and tested independently.
 
 [Raw AI exchanges](prompts.md) · [Full analysis](extra/full-analysis.md) · [Source-verification ledger](SOURCE_AUDIT.md) · [Audit](AUDIT.md) · [Simulations](sim.py) · [Lean algebra](formal/Proposition3.lean) · [Beamer source](presentation.tex) · [5-page PDF](presentation.pdf).
 
-Run `python -m unittest discover -s tests -v`; figures: `python sim.py` and `python bounded_model.py`. The instructor has access to this private repository.
+Run `python -m unittest discover -s tests -v`; figures: `python sim.py` and `python bounded_model.py`. The instructor has access to this repository.
