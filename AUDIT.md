@@ -141,6 +141,10 @@ a page-by-page source audit or assumed these two versions have identical
 equation/footnote numbering. Our mathematical conclusions are explicitly
 conditional on the functional forms transcribed in the repository.
 
+## Reproduction certificate: bounded variant
+
+[GitHub Actions #45111360008](https://github.com/alejandroventuraventurameza-tech/ai-02-agrawal/actions/runs/45111360008) completed successfully on the capped-model code at commit `a18e286f69cda9759b2a0e2f5ff2102f8963308a`. Its Python stage reported **10 passing tests**, including exact-rational checks of all three capped-model regions. The script checked numerical agreement of the level/gain variance curves with the analytical functions, and the Beamer workflow produced a verified **five-page PDF** and the regenerated chart. These are numerical/reproducibility receipts; the monotonicity argument depends on the separate analytic proof, not on sampling alone.
+
 ## Outstanding obligations
 
 - **Handwritten evidence:** `hand/prop3-derivation.jpg` is not present.

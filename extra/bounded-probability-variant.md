@@ -51,6 +51,13 @@ the global maximizer. If \(s^2\le\theta<1\), the right derivative at
 zero is nonpositive and concavity followed by the decreasing capped
 branch implies \(e^*=0\).
 
+For the high-skill type \(s=1\), the candidate itself lies at the
+saturation kink: the left marginal return is zero and the right derivative
+is \(-1\). Thus a two-sided classical FOC is not available there, but the
+one-sided derivative and monotonicity of the capped branch still certify
+the global maximum. This distinction matters when comparing the extension
+with the source paper's smoothness assumptions.
+
 For \(\theta\ge1\), the probability cap already binds at \(e=0\);
 any positive effort only increases cost. Therefore, for all \(\theta\ge0\),
 

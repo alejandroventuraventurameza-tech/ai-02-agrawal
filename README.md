@@ -68,6 +68,7 @@ D(\theta)=V_H(\theta)-V_L(\theta)=
 Thus level variance \(D^2/4\) falls from \(1/25\) to zero, whereas
 gain variance \((D-2/5)^2/4\) rises from zero to \(1/25\).
 The **analytic proof**, full domain qualifications and reproducible figure
+([verified in CI](https://github.com/alejandroventuraventurameza-tech/ai-02-agrawal/actions/runs/45111360008))
 are in [the capped-probability extension](extra/bounded-probability-variant.md)
 and [\`bounded_model.py\`](bounded_model.py). The probability cap
 introduces a kink: we do **not** claim it preserves the paper's globally
