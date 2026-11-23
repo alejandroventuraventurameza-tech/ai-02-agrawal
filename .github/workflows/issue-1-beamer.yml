@@ -1,0 +1,45 @@
+name: Verify issue 1 and compile Beamer
+
+on:
+  push:
+    branches:
+      - audit/issue-1-finalization-20261122
+    paths:
+      - "presentation.tex"
+      - "tests/**"
+      - ".github/workflows/issue-1-beamer.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify exact variance identities
+        run: python -m unittest discover -s tests -v
+      - name: Install minimal Beamer toolchain
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended lmodern
+      - name: Compile Beamer source
+        run: |
+          pdflatex -interaction=nonstopmode -halt-on-error -file-line-error presentation.tex
+          pdflatex -interaction=nonstopmode -halt-on-error -file-line-error presentation.tex
+          test -s presentation.pdf
+          pdfinfo presentation.pdf | grep -E '^Pages:[[:space:]]+5$'
+      - name: Commit refreshed PDF to audit branch
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f presentation.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "build: refresh compiled Beamer PDF"
+            git push origin HEAD:audit/issue-1-finalization-20261122
+          fi

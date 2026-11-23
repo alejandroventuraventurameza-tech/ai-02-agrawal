@@ -52,7 +52,7 @@ but the derivative of the variance is most transparently written as
 
 $$
 \frac{d\operatorname{Var}(V)}{d\theta}
-=2\operatorname{Cov}\left(\Gamma K\alpha^2s,rac\Gamma s\right)
+=2\operatorname{Cov}\left(\Gamma K\alpha^2s,\frac\Gamma s\right)
 +2\theta\operatorname{Var}(\Gamma/s).
 $$
 

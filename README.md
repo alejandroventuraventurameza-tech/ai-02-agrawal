@@ -129,6 +129,34 @@ $e=0$, the paper's quadratic variance calculation is no longer the correct
 global value function. See [`extra/tutorial-prop3.md`](extra/tutorial-prop3.md)
 for the derivation and [`extensions.md`](extensions.md) for the corrected route.
 
+
+## November 2026 audit: an important domain qualification
+
+The two-skill construction above is an **exact counterexample to the inference
+from (H) to the sign at \(\theta=1\) within the paper's square-root algebra**.
+It is **not** an example with a globally valid success probability constrained
+to \([0,1]\). At the interior optimum,
+
+\[
+p(se^*;\theta)=\sqrt{se^*+\theta}=\frac{\alpha\Delta s}{2}.
+\]
+
+With the illustrative parameters this equals \(6/5\) for \(s=0.6\) and \(2\)
+for \(s=1\), both greater than one. Indeed, at \(\theta=1\), **any** strictly
+positive effort implies \(\sqrt{se+1}>1\) for \(s>0\). The model's square-root
+functional form therefore needs a domain or scaling clarification if \(p\) is
+read as a literal probability. Do not describe this construction as respecting
+an additional probability upper bound.
+
+A further distinction: the algebraic turning point \(12/5=2.4\) occurs **after**
+the first type's interiority threshold \(36/25=1.44\). Thus it cannot by itself
+establish that the *constrained* model's inequality is U-shaped.
+The verified result is the derivative's missing sign implication on \([0,1]\),
+not a globally established inequality path.
+
+See [the exact-arithmetic regression tests](tests/test_proposition3.py) and
+[the audit ledger](AUDIT.md) for checks, scope, and remaining obligations.
+
 ## Repository map
 
 | Path | Contents |
