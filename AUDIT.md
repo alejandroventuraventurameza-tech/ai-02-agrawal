@@ -174,6 +174,10 @@ model remains a distinct extension.
 PDF SHA-256: `f38c710d6099b81e6195667429f2369e7ac01f89e8f7d95129a8ded8141e71ee`.
 JPEG SHA-256: `1eab251ec0a7825ce132d71e4cb627b6acc7c85bc23b878b4bc527089c9941a1`.
 
+## Final visual and build receipt (23 November 2026)
+
+[GitHub Actions run #45117487008](https://github.com/alejandroventuraventurameza-tech/ai-02-agrawal/actions/runs/45117487008) completed **successfully** on the photo-inclusive Beamer source (commit `53c273bf6c77202de04ad748f374ca897453f3b0`). It checked both handwriting SHA-256 files, the four-page manuscript count, ten Python tests, chart regeneration, five-slide PDF compilation and preview generation. The rendered slide 4 was reviewed visually with the original handwriting enlarged and with the extraneous page footer removed.
+
 ## Outstanding obligations
 
 - **Handwritten evidence:** four-page user-supplied annotated manuscript stored as `hand/prop3-handwritten-full.pdf` and an image of page 4 stored as `hand/prop3-derivation.jpg`; both SHA-256 hashes are recorded in `hand/SHA256SUMS`. This is a rendered image of the original handwritten PDF, **not** an asserted camera photograph of paper. If the instructor requires a literal camera photograph, that separate condition must be checked.
@@ -183,9 +187,7 @@ JPEG SHA-256: `1eab251ec0a7825ce132d71e4cb627b6acc7c85bc23b878b4bc527089c9941a1`
 - **Source verification:** the original NBER working-paper text requires a
   page-by-page primary-document check when accessible, especially the precise
   domain assumptions on \(p\) and \(\theta\).
-- **Instructor access:** the repository is private. The course guide allows
-  private repositories only when the instructor has read access; this
-  connection does not expose collaborator invitations.
+- **Instructor access:** GitHub reports `alexanderquispe` has `read` permission on the private repository (checked 23 November 2026). This requirement is satisfied.
 - **Deadline:** the August 25, 2026 submission time is historical and cannot
   be reconstructed by a later PR or issue comment.
 
