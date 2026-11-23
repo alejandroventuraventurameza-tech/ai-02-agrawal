@@ -84,6 +84,20 @@ probability of success. Their source function \(\sqrt{se+\theta}\)
 can exceed one. Any repaired probability model must be re-analysed
 from its altered primitive.
 
+## The actual AI answer I disputed (slide 4)
+
+In prompts.md, the assistant answered "Yes" when asked for a
+counterexample satisfying every listed condition. Its calculations of
+heterogeneity, interiority and the sign at theta=1 were algebraically
+correct, but it did not check the bounded-probability interpretation
+of the primitive success function. At the FOC, p*=2s is either 6/5 or
+2, exceeding one. The claimed counterexample is therefore invalid
+as a literal probability model even though it refutes an algebraic
+sign inference.
+
+We do not invent a raw unconditional U-shaped AI statement:
+the logged answer to that separate question was already nuanced.
+
 ## Not certified
 
 - **Handwritten evidence:** \`hand/prop3-derivation.jpg\` is not present.

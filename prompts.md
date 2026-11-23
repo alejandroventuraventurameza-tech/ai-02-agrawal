@@ -246,3 +246,16 @@ Esta es una demostración que podemos reproducir a mano y contrastar con Lean. H
 Lean ya descargó y preparó Mathlib, y el compilador llegó a las demostraciones. Detectó dos fallos en los *tactics* —uno de positividad y otro de multiplicación por una cantidad positiva—, no en las identidades económicas que estamos comprobando. Los corregiré explícitamente y volveré a ejecutar la prueba; así evitamos aceptar una demostración que dependa de `sorryAx`.
 
 *The above preserves selected actual messages, including an intermediate failed Lean check. It is not a complete export of tool calls or of the whole conversation.*
+
+
+## Later audit of the preserved raw AI answer (2026-11-22)
+
+The original assistant answer to the prompt demanding a counterexample
+satisfying every listed condition correctly checked the heterogeneity
+inequality and effort interiority. It failed to check that
+p*=alpha*Delta*s/2 is within [0,1]: the example has p*=6/5 and 2.
+Thus the answer's claim of a fully admissible probability model is
+incorrect, despite correct algebra. The original answer remains
+unmodified earlier in this raw transcript. The AI's separate answer
+about the U-shape was already conditional; this audit does not invent
+an unqualified quotation.

@@ -145,20 +145,26 @@
 \end{frame}
 
 %================= 4. AI CHECK ========================================
-\begin{frame}{4 \textperiodcentered{} ``Variance is U-shaped in AI'' failed three checks}
+\begin{frame}{4 \textperiodcentered{} I checked the AI's example, not just its algebra}
   \begin{columns}[T,onlytextwidth]
     \column{0.47\textwidth}
-    \textbf{What the loose answer omitted}
+    {\small\textbf{Recorded answer} (see prompts.md): the AI said
+    \emph{Yes} to a purported counterexample satisfying the assumptions
+    and checked only its algebra and interiority.}
+
+    \medskip
+    \textbf{My independent checks}
     \begin{enumerate}\small
-      \item The object is cross-sectional $\operatorname{Var}(V(\theta))$.
-      \item The initial decline needs a heterogeneity inequality.
-      \item The sign at one needs $\theta^*<1$.
-      \item The closed form ends when $e^*(\theta)$ hits zero.
+      \item (H) holds but the slope at 1 is $-14/45$.
+      A positive slope requires $\theta^*<1$.
+      \item The AI omitted $p^*=2s\in\{1.2,2\}>1$:
+      not a valid probability.
+      \item $\theta^*=2.4$ exceeds the first effort corner at $1.44$.
     \end{enumerate}
 
     \begin{alertblock}{Verdict}
-      \textbf{Incorrect as stated.} The paper proves a local quadratic result
-      under an interior formula, not an unconditional U on all tool qualities.
+      \textbf{Incorrect as a probability-model example.}
+      Its algebra is correct; its economic admissibility is not.
     \end{alertblock}
 
     \column{0.49\textwidth}
