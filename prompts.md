@@ -259,3 +259,31 @@ incorrect, despite correct algebra. The original answer remains
 unmodified earlier in this raw transcript. The AI's separate answer
 about the U-shape was already conditional; this audit does not invent
 an unqualified quotation.
+
+
+## User — 2026-11-22 (continuation)
+
+Sigue
+
+## Assistant — relevant mathematical proposal in the live response
+
+Encontré una mejora importante para fortalecer el repositorio: podemos
+construir una versión del modelo en la que la probabilidad de éxito
+nunca supere 1, corrigiendo una de las limitaciones de nuestro ejemplo
+anterior.
+
+\[
+p(se;\theta)=\min\{1,\sqrt{se+\theta}\},\qquad c(e)=e,
+\]
+
+con \(\alpha=\Gamma=1\), \(\Delta=2\) y dos tipos de trabajadores
+igualmente probables: \(s\in\{0.6,1\}\).
+
+El esfuerzo óptimo propuesto es
+\(e^*(\theta,s)=\max\{s-\theta/s,0\}\) para
+\(0\le\theta\le1\), y cero para \(\theta\ge1\).
+
+Nota de auditoría posterior: la versión con tope debe analizarse
+como una extensión, no atribuirse a la Proposición 3 original.
+El argumento formal por tramos está en
+`extra/bounded-probability-variant.md`.

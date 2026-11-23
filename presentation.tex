@@ -114,32 +114,33 @@
 \end{frame}
 
 %================= 3. WHAT I DID ======================================
-\begin{frame}{3 \textperiodcentered{} The audit separates total inequality from unequal gains}
+\begin{frame}{3 \textperiodcentered{} Capping the probability removes the U in this example}
   \begin{columns}[T,onlytextwidth]
     \column{0.60\textwidth}
-    \IfFileExists{figures/prop3-slide-audit.png}{
-      \includegraphics[width=\linewidth]{figures/prop3-slide-audit.png}
+    \IfFileExists{figures/prop3-bounded-success.png}{
+      \includegraphics[width=\linewidth]{figures/prop3-bounded-success.png}
     }{
       \fbox{\parbox[c][0.48\textheight][c]{0.95\linewidth}{\centering
-        Run \texttt{python sim.py} to generate the audit figure.}}
+        Run \texttt{python bounded_model.py} to generate the figure.}}
     }
 
     \column{0.36\textwidth}
-    \textbf{Algebraic counterexample}
+    \textbf{My separate extension}
     \begin{itemize}\small
-      \item $\Gamma=\alpha=1$, $\Delta=4$
+      \item $p=\min\{1,\sqrt{se+\theta}\}$
+      \item $\Gamma=\alpha=1$, $\Delta=2$
       \item $s\in\{0.6,1\}$, equally likely
-      \item (H) and interiority hold, but $p^*>1$: algebraic only
-      \item effort stays interior on $[0,1]$
-      \item yet $\left.d\operatorname{Var}(V)/d\theta\right|_{1}<0$
+      \item Level variance $\downarrow 0$
+      \item Gain variance $\uparrow 0.04$
     \end{itemize}
 
-    \textbf{Different object}
-    {\small\[
-      \operatorname{Var}[V(\theta)-V(0)]
-      =\theta^2\operatorname{Var}(\Gamma/s),
-    \]}
-    which increases monotonically.
+    \textbf{Why?}
+    {\small Low-skill effort hits zero at
+    $\theta=0.36$; all effort is zero by $\theta=1$.}
+
+    \medskip
+    {\scriptsize\color{gray}Own model variant; the cap changes the
+    global strict-substitution assumption.}
   \end{columns}
   \sourcefoot
 \end{frame}

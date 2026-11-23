@@ -23,3 +23,7 @@ Write and photograph these steps:
 Cross-outs are welcome: the purpose is to show the step that was independently
 checked rather than accepted from the model or the LLM.
 
+
+
+For a one-page handwritten checklist explicitly linking the recorded AI answer
+to the probability-domain omission, see [`derivation-guide.md`](derivation-guide.md).

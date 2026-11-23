@@ -102,6 +102,45 @@ the logged answer to that separate question was already nuanced.
 
 [GitHub Actions run 45104051271](https://github.com/alejandroventuraventurameza-tech/ai-02-agrawal/actions/runs/45104051271) returned **success** for `formal/Proposition3.lean` at revision `df2b7d81023b78626238935a2727ff8f2c9b04ce`, with Lean `4.30.0-rc2` and pinned Mathlib. All six `#print axioms` outputs contain only `propext`, `Classical.choice`, and `Quot.sound`; none contains `sorryAx`. This is a formal certificate for the encoded *algebraic lemmas only*, not the full published proposition or the validity of the probability primitive.
 
+## Separate bounded-probability extension (2026-11-22)
+
+We constructed a **new** model with \(p=\min\{1,\sqrt{se+\theta}\}\),
+\(\Delta=2\), \(\alpha=\Gamma=1\), and the same two skill types.
+Its closed-form optimizer is \(e^*=\max\{s-\theta/s,0\}\).
+For \(\theta\ge1\), the success cap binds at zero effort.
+The exact high-minus-low gap is
+
+\[
+D(\theta)=
+\begin{cases}
+2/5-2\theta/3,&0\le\theta\le9/25,\\
+(1-\sqrt\theta)^2,&9/25\le\theta\le1,\\
+0,&\theta\ge1.
+\end{cases}
+\]
+
+Consequently \(\operatorname{Var}(V)=D^2/4\) decreases from \(1/25\)
+to zero while the variance of individual gains
+\((D-2/5)^2/4\) increases from zero to \(1/25\).
+The monotonicity is established by differentiating the pieces;
+sample-point tests are corroboration, not the proof. The new
+cap changes the differentiability and strict-substitution assumptions
+and is not equivalent to the original published functional form.
+See \`extra/bounded-probability-variant.md\`.
+
+## Primary-source verification boundary
+
+The publisher's [NBER page](https://www.nber.org/papers/w34034)
+confirms the 2025 working-paper citation and broad theoretical mechanism.
+The direct NBER 53-page PDF endpoint did not provide accessible content
+in this session. The
+[SSRN NBER listing](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5350364)
+reports a revision on 2026-06-29; the course issue refers to the
+July 2025 teaching version. Accordingly, we have **not** certified
+a page-by-page source audit or assumed these two versions have identical
+equation/footnote numbering. Our mathematical conclusions are explicitly
+conditional on the functional forms transcribed in the repository.
+
 ## Outstanding obligations
 
 - **Handwritten evidence:** `hand/prop3-derivation.jpg` is not present.

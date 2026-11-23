@@ -48,16 +48,42 @@ The first effort corner is \(36/25\), before the extrapolated turning point \(12
 
 An additional exact calculation shows that, with effort constrained to be nonnegative, the **algebraic** total-value variance in this example decreases to zero rather than becoming U-shaped. The variance of individual gains instead increases and plateaus. Proof and limitations: [AUDIT.md](AUDIT.md) and [the Spanish tutorial](extra/tutorial-prop3.md).
 
+## A probability-admissible extension (new result)
+
+We separately study **a modified primitive**, not the paper's original
+Proposition 3: \(p(se;\theta)=\min\{1,\sqrt{se+\theta}\}\),
+\(c(e)=e\), \(\alpha=\Gamma=1\), \(\Delta=2\), and equally likely
+\(s\in\{3/5,1\}\). The cap guarantees \(0\le p\le1\).
+The optimized value gap becomes
+
+\[
+D(\theta)=V_H(\theta)-V_L(\theta)=
+\begin{cases}
+2/5-2\theta/3,&0\le\theta\le9/25,\\
+(1-\sqrt{\theta})^2,&9/25\le\theta\le1,\\
+0,&\theta\ge1.
+\end{cases}
+\]
+
+Thus level variance \(D^2/4\) falls from \(1/25\) to zero, whereas
+gain variance \((D-2/5)^2/4\) rises from zero to \(1/25\).
+The **analytic proof**, full domain qualifications and reproducible figure
+are in [the capped-probability extension](extra/bounded-probability-variant.md)
+and [\`bounded_model.py\`](bounded_model.py). The probability cap
+introduces a kink: we do **not** claim it preserves the paper's globally
+strict tool definition at saturation.
+
 ## Reproduce and inspect
 
 ```bash
 python -m unittest discover -s tests -v
 python -m pip install -r requirements.txt
 python sim.py
+python bounded_model.py
 pdflatex -interaction=nonstopmode -halt-on-error presentation.tex
 ```
 
-- [Raw interactions](prompts.md) · [Numerical code](sim.py) · [Full figure](figures/prop3-variance-audit.png) · [Slide preview](preview/beamer-contact-sheet.png).
+- [Handwritten verification guide](hand/derivation-guide.md) · [Raw interactions](prompts.md) · [Numerical code](sim.py) · [Full figure](figures/prop3-variance-audit.png) · [Slide preview](preview/beamer-contact-sheet.png).
 - [Lean algebraic proofs](formal/Proposition3.lean): six statements **compiled without `sorryAx`** ([CI certificate](https://github.com/alejandroventuraventurameza-tech/ai-02-agrawal/actions/runs/45104051271)); not a proof of the full economic model.
 - [Five-minute Beamer](presentation.tex) and [compiled PDF](presentation.pdf) (title + four slides).
 - **Required human evidence still missing:** a genuine photograph `hand/prop3-derivation.jpg`; see [instructions](hand/README.md). No fabricated handwriting is included.
