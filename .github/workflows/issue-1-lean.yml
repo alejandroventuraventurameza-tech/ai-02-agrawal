@@ -31,7 +31,12 @@ jobs:
           lake update
           lake exe cache get
       - name: Check all exact algebraic theorems
-        run: lake env lean formal/Proposition3.lean
+        run: |
+          set -o pipefail
+          lake env lean formal/Proposition3.lean | tee lean-proof.log
+          if grep -q 'sorryAx' lean-proof.log; then
+            echo "Lean axiom audit found sorryAx"; exit 1
+          fi
       - name: Reject executable proof holes
         run: |
           if grep -nE '^[[:space:]]*(sorry|admit)([[:space:]]|$)' formal/Proposition3.lean; then

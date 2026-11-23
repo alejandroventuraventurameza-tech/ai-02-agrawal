@@ -35,6 +35,55 @@ The follow-up GitHub Action runs exact-rational tests, compiles the five-slide
 Beamer deck, and commits the resulting PDF on the audit branch when writable.
 The PDF must be checked against the latest source before merging.
 
+
+## Exact additional result: effort constraint, two types
+
+This is **our calculation**, not a claim that the authors proved a global
+monotonicity theorem. The example is algebraic and its success index is not
+bounded by one.
+
+With \(\Gamma=\alpha=1\), \(\Delta=4\), equal weights on
+\(s_L=3/5\), \(s_H=1\), and effort constrained by \(e\ge0\), the
+effort corner is at \(\theta_s=4s^2\). The value gap between high and
+low skill is therefore
+
+\[
+D(\theta)=V_H(\theta)-V_L(\theta)=
+\begin{cases}
+8/5-2\theta/3,&0\le\theta\le36/25,\\
+4+\theta-4\sqrt\theta=(\sqrt\theta-2)^2,&36/25\le\theta\le4,\\
+0,&\theta\ge4.
+\end{cases}
+\]
+
+The pieces match at \(\theta=36/25\), where \(D=16/25\), and
+at \(\theta=4\), where \(D=0\). On the first interval \(D'=-2/3\).
+On the second \(D'=1-2/\sqrt\theta\le0\). Thus \(D\) is
+nonnegative and nonincreasing everywhere. Since types have equal weights,
+
+\[
+\operatorname{Var}(V(\theta))=\frac{D(\theta)^2}{4}
+\]
+
+is nonincreasing, strictly decreasing up to \(\theta=4\), then zero.
+Meanwhile the within-person gains relative to \(\theta=0\) have gap
+\(D(\theta)-8/5\), so
+
+\[
+\operatorname{Var}(V(\theta)-V(0))
+=\frac{(8/5-D(\theta))^2}{4}
+\]
+
+is nondecreasing, reaching \(16/25\) and then constant for
+\(\theta\ge4\). This maintains the vital distinction between level
+inequality and the dispersion of individual gains beyond the common
+interior region.
+
+**Non-claim:** these are not global inequalities for a bounded
+probability of success. Their source function \(\sqrt{se+\theta}\)
+can exceed one. Any repaired probability model must be re-analysed
+from its altered primitive.
+
 ## Not certified
 
 - **Handwritten evidence:** \`hand/prop3-derivation.jpg\` is not present.

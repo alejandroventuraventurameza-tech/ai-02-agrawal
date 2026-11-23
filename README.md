@@ -1,175 +1,64 @@
-# Repository 2 - Agrawal, Gans & Goldfarb (2025)
+# Repository 2 — Agrawal, Gans & Goldfarb (2025)
 
-**Paper:** *The Economics of Bicycles for the Mind*, NBER Working Paper 34034
+**Paper:** [*The Economics of Bicycles for the Mind*](https://www.nber.org/papers/w34034), NBER Working Paper 34034, DOI [10.3386/w34034](https://doi.org/10.3386/w34034). This is an **unrefereed working paper**, not a peer-reviewed journal article.
 
-**Status:** theoretical working paper, circulated for discussion and not peer reviewed.
+## Question and economic mechanism
 
-**Source:** [NBER paper page](https://www.nber.org/papers/w34034) · [DOI](https://doi.org/10.3386/w34034)
+When cognitive tools make task implementation easier, which human capabilities do they replace or amplify, and what happens to effort, productivity, and inequality?
 
-> The headline is not “AI makes inequality U-shaped.” The precise object is the
-> **cross-sectional variance of continuation values** as tool quality changes, and
-> the claimed U-shape needs both a heterogeneity inequality and an interior-solution
-> argument. The paper establishes the first condition but overstates the second.
-
-## What question does the paper answer?
-
-When a cognitive tool makes implementation easier, how does it change human effort,
-productivity, and inequality - and which human abilities does it replace or amplify?
-
-The paper separates three abilities that are usually bundled together:
-
-- **implementation skill** $s$: turning effort into a successful improvement;
-- **payoff judgment** $\alpha$: knowing which action creates value in a given state;
-- **opportunity judgment** $(\gamma_0,\gamma)$: noticing an initial or subsequent
-  opportunity to improve the task.
-
-The answer is conditional. A cognitive tool substitutes for implementation effort and
-skill, always raises the optimized net value under the paper's definition, and amplifies
-opportunity judgment. Its interaction with payoff judgment is ambiguous in the general
-model. Consequently, average productivity rises, while inequality can fall or rise
-depending on the distributions of skill and judgment and on tool quality.
-
-## The agent's problem
-
-Conditional on noticing an opportunity in round $t$, the agent chooses effort:
-
-$$
-e_t^*(\theta)\in\arg\max_{e_t\ge 0}
-M(e_t;\theta),\qquad
-M(e_t;\theta)=p(se_t;\theta)\alpha\Delta-c(e_t;\theta).
-$$
-
-The general assumptions are $p_e\ge0$ and weak concavity, $c_e\ge0$ and weak
-convexity, $\alpha\in(0,1]$, $s\in(0,1]$, $\Delta>0$, and a cognitive tool
-$\theta$ that weakly raises $p$, weakly lowers $c$, and strictly lowers the
-marginal-benefit/marginal-cost ratio $p_e/c_e$. With $\gamma(0)=\gamma_0$,
-$\gamma(t)=\gamma$ for $t>0$, and $\delta\gamma<1$,
-
-$$
-V(\theta)=\Gamma M(e^*(\theta);\theta),
-\qquad \Gamma\equiv\frac{\gamma_0}{1-\delta\gamma}.
-$$
-
-## Main result: Proposition 3, with its conditions
-
-Section 4 adds the functional forms
-
-$$
-p(se;\theta)=\sqrt{se+\theta},\qquad c(e)=e,
-$$
-
-assumes $\alpha,\gamma_0,\gamma,s$ are mutually independent with positive
-support, and uses an interior solution. The first-order condition gives
-
-$$
-e^*(\theta)=\frac{\alpha^2\Delta^2s}{4}-\frac{\theta}{s},
-\qquad
-V(\theta)=\Gamma\left(\frac{\alpha^2\Delta^2s}{4}+\frac{\theta}{s}\right).
-$$
-
-Define $\mu_s=E[s]$. The heterogeneity condition is
-
-$$
-\frac{E[\Gamma^2]}{E[\Gamma]^2}<\mu_sE[1/s]. \tag{H}
-$$
-
-Under the maintained interior formula, $E[V(\theta)]$ rises with $\theta$ and
-
-$$
-\frac{d\operatorname{Var}(V(\theta))}{d\theta}
-=a_0+2\theta\operatorname{Var}(\Gamma/s),
-$$
-
-where
-
-$$
-a_0=\frac{\Delta^2E[\alpha^2]}{2}
-\left(E[\Gamma^2]-E[\Gamma]^2\mu_sE[1/s]\right).
-$$
-
-Thus (H) implies $a_0<0$, strict convexity when
-$\operatorname{Var}(\Gamma/s)>0$, and the unique algebraic turning point
-
-$$
-\theta^*=-\frac{a_0}{2\operatorname{Var}(\Gamma/s)}>0.
-$$
-
-**What is proved:** variance initially falls and eventually rises *within the
-region where the interior formula remains valid*.
-
-**What is not implied by (H):** $d\operatorname{Var}(V)/d\theta>0$ at
-$\theta=1$. That additionally requires $\theta^*<1$. The paper states the sign
-at $\theta=1$ without this condition.
-
-## This week's trap - audited
-
-1. **Variance of what?** $\operatorname{Var}(V(\theta))$: cross-sectional wage
-   or productivity inequality across heterogeneous agents, as a function of
-   tool quality $\theta$. It is not uncertainty in the AI output.
-2. **Unconditional?** No. The initial decline requires (H); a turn before a
-   specified quality level also requires that the turning point lie below that
-   level. The closed form further requires $e^*(\theta)>0$ agent by agent.
-3. **Variance of the individual benefit?** Under the same interior formula,
-   $B(\theta)=V(\theta)-V(0)=\theta\Gamma/s$, so
-   $\operatorname{Var}(B(\theta))=\theta^2\operatorname{Var}(\Gamma/s)$ -
-   monotonically increasing for $\theta>0$ whenever $\Gamma/s$ is heterogeneous.
-
-## Where I did not believe the AI
-
-The loose claim “wage variance is U-shaped in AI” is **incomplete**, and the
-stronger claim in Proposition 3(b) that the derivative is positive at
-$\theta=1$ is **not delivered by condition (H)**. The reproducible two-type
-counterexample in [`sim.py`](sim.py) satisfies every listed distributional
-condition and keeps effort interior on $[0,1]$, yet the variance derivative is
-still negative at $\theta=1$.
-
-There is a second domain problem: with $\theta\in[0,\infty)$, no finite $\Delta$
-keeps $e^*(\theta)>0$ for all tool qualities. Once effort reaches the constraint
-$e=0$, the paper's quadratic variance calculation is no longer the correct
-global value function. See [`extra/tutorial-prop3.md`](extra/tutorial-prop3.md)
-for the derivation and [`extensions.md`](extensions.md) for the corrected route.
-
-
-## November 2026 audit: an important domain qualification
-
-The two-skill construction above is an **exact counterexample to the inference
-from (H) to the sign at \(\theta=1\) within the paper's square-root algebra**.
-It is **not** an example with a globally valid success probability constrained
-to \([0,1]\). At the interior optimum,
+Three capabilities play separate roles: implementation skill \(s\), payoff judgment \(\alpha\), and opportunity judgment \((\gamma_0,\gamma)\). Conditional on identifying an improvement opportunity, the agent chooses effort \(e\ge0\):
 
 \[
-p(se^*;\theta)=\sqrt{se^*+\theta}=\frac{\alpha\Delta s}{2}.
+e^*(\theta)\in\arg\max_{e\ge0}
+\{p(se;\theta)\alpha\Delta-c(e;\theta)\},\qquad
+V(\theta)=\underbrace{\frac{\gamma_0}{1-\delta\gamma}}_{\Gamma}
+\,M(e^*(\theta);\theta).
 \]
 
-With the illustrative parameters this equals \(6/5\) for \(s=0.6\) and \(2\)
-for \(s=1\), both greater than one. Indeed, at \(\theta=1\), **any** strictly
-positive effort implies \(\sqrt{se+1}>1\) for \(s>0\). The model's square-root
-functional form therefore needs a domain or scaling clarification if \(p\) is
-read as a literal probability. Do not describe this construction as respecting
-an additional probability upper bound.
+The general analysis assumes increasing, weakly concave implementation success; increasing, weakly convex effort cost; \(\Delta>0\); \(\alpha,s>0\); \(\delta\gamma<1\); and a tool that improves success and/or reduces cost while reducing the marginal return-to-cost ratio for human implementation effort. The mechanism is substitution of execution effort combined with amplification of opportunity judgment.
 
-A further distinction: the algebraic turning point \(12/5=2.4\) occurs **after**
-the first type's interiority threshold \(36/25=1.44\). Thus it cannot by itself
-establish that the *constrained* model's inequality is U-shaped.
-The verified result is the derivative's missing sign implication on \([0,1]\),
-not a globally established inequality path.
+## Proposition 3: exact conditions and qualification
 
-See [the exact-arithmetic regression tests](tests/test_proposition3.py) and
-[the audit ledger](AUDIT.md) for checks, scope, and remaining obligations.
+For the Section 4 algebra, \(p(se;\theta)=\sqrt{se+\theta}\), \(c(e)=e\), mutually independent positive \((\alpha,\gamma_0,\gamma,s)\), and finite required moments. **Only where the solution remains interior**, \(\theta<\alpha^2\Delta^2s^2/4\) for every type, does the closed form hold:
 
-## Repository map
+\[
+e^*(\theta)=\frac{\alpha^2\Delta^2s}{4}-\frac{\theta}{s},\qquad
+V(\theta)=\Gamma\left(\frac{\alpha^2\Delta^2s}{4}+\frac{\theta}{s}\right).
+\]
 
-| Path | Contents |
-|---|---|
-| [`prompts.md`](prompts.md) | Raw prompts and relevant answers, including the variance correction |
-| [`extra/tutorial-prop3.md`](extra/tutorial-prop3.md) | Deep-dive tutorial in Spanish, from the model to Proposition 3 |
-| [`sim.py`](sim.py) | Symbolic identities, counterexample, corner solution, and figures |
-| [`figures/`](figures/) | Reproducible outputs from the audit |
-| [`extensions.md`](extensions.md) | Precise extensions and what each changes |
-| [`formal/`](formal/) | EconCSLib/Lean-ready algebraic checks and scope statement |
-| [`hand/`](hand/) | Instructions and destination for the required handwritten photo |
-| [`presentation.tex`](presentation.tex) / `presentation.pdf` | Five-minute Beamer deck |
-| [`paper/`](paper/) | Citation and reproducible retrieval instructions; PDF not committed |
+Let \(\mu_s=E[s]\) and \(q=\operatorname{Var}(\Gamma/s)\). Under independence,
 
-`hand/prop3-derivation.jpg` will show the FOC, the variance derivative, and the
-missing $\theta^*<1$ condition. It must be a real phone photo added by the student.
+\[
+\frac{d\operatorname{Var}(V)}{d\theta}
+=a_0+2\theta q,\quad
+a_0=\frac{\Delta^2E[\alpha^2]}2
+\left(E[\Gamma^2]-E[\Gamma]^2\mu_sE[1/s]\right).
+\]
+
+The paper's heterogeneity inequality
+\(E[\Gamma^2]/E[\Gamma]^2<\mu_sE[1/s]\)
+implies \(a_0<0\). If \(q>0\), the **algebraic** turning point is
+\(\theta^*=-a_0/(2q)>0\). A positive derivative at \(\theta=1\) **additionally** requires \(\theta^*<1\), and that point must remain interior. This is a conditional result about **cross-sectional variance of total value**, not variance of AI predictions. Separately, individual gains \(B(\theta)=V(\theta)-V(0)\) satisfy \(\operatorname{Var}(B(\theta))=\theta^2q\) in the same interior region.
+
+## Independent audit and extension
+
+With equal weights on \(s\in\{3/5,1\}\), \(\Gamma=\alpha=1\), and \(\Delta=4\), the heterogeneity inequality holds (\(1<16/15\)); effort stays interior on \([0,1]\); yet
+\(\operatorname{Var}'(V)|_{\theta=1}=-14/45<0\).
+The first effort corner is \(36/25\), before the extrapolated turning point \(12/5\). **Important:** this is a counterexample to the *algebraic sign inference*, not a literal calibrated probability model: the success index at the FOC equals \(p^*\in\{6/5,2\}>1\).
+
+An additional exact calculation shows that, with effort constrained to be nonnegative, the **algebraic** total-value variance in this example decreases to zero rather than becoming U-shaped. The variance of individual gains instead increases and plateaus. Proof and limitations: [AUDIT.md](AUDIT.md) and [the Spanish tutorial](extra/tutorial-prop3.md).
+
+## Reproduce and inspect
+
+```bash
+python -m unittest discover -s tests -v
+python -m pip install -r requirements.txt
+python sim.py
+pdflatex -interaction=nonstopmode -halt-on-error presentation.tex
+```
+
+- [Raw interactions](prompts.md) · [Numerical code](sim.py) · [Full figure](figures/prop3-variance-audit.png) · [Slide preview](preview/beamer-contact-sheet.png).
+- [Lean algebraic proofs](formal/Proposition3.lean): version-pinned, **not** a formalization of the full economic model; check [Lean CI](../../actions) for actual compiler status.
+- [Five-minute Beamer](presentation.tex) and [compiled PDF](presentation.pdf) (title + four slides).
+- **Required human evidence still missing:** a genuine photograph `hand/prop3-derivation.jpg`; see [instructions](hand/README.md). No fabricated handwriting is included.
+- Repository is private; ensure instructor `alexanderquispe` has read access before registering the link. The original August 25, 2026 deadline is historical and cannot be changed.

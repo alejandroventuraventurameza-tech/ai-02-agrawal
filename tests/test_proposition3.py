@@ -72,6 +72,37 @@ class Proposition3Audit(unittest.TestCase):
         self.assertGreater(Q(12, 5), min(thresholds))
         self.assertLess(interior_effort(Q(2), SKILLS[0]), 0)
 
+    def test_exact_global_effort_constraint_paths(self):
+        """Verified exact-rational sample points on every piece of D(theta)."""
+        from math import isqrt
+
+        def perfect_square_root(x):
+            n = isqrt(x.numerator)
+            d = isqrt(x.denominator)
+            assert Q(n, d) ** 2 == x
+            return Q(n, d)
+
+        def constrained_exact(theta, skill):
+            e0 = interior_effort(theta, skill)
+            if e0 > 0:
+                return interior_value(theta, skill)
+            return Q(4) * perfect_square_root(theta)
+
+        theta = (Q(0), Q(1), Q(36, 25), Q(9, 4), Q(4), Q(9))
+        gaps = tuple(
+            constrained_exact(t, SKILLS[1]) - constrained_exact(t, SKILLS[0])
+            for t in theta
+        )
+        self.assertEqual(gaps, (
+            Q(8, 5), Q(14, 15), Q(16, 25), Q(1, 4), Q(0), Q(0)
+        ))
+        v_level = tuple(g * g / 4 for g in gaps)
+        v_gain = tuple((g - gaps[0]) ** 2 / 4 for g in gaps)
+        self.assertTrue(all(a >= b for a, b in zip(v_level, v_level[1:])))
+        self.assertTrue(all(a <= b for a, b in zip(v_gain, v_gain[1:])))
+        self.assertEqual(v_level[-1], Q(0))
+        self.assertEqual(v_gain[-1], Q(16, 25))
+
     def test_probability_domain_caveat(self):
         # sqrt(s*e_star+theta) = alpha*Delta*s/2 = 2*s at the FOC.
         self.assertEqual(tuple(2*s for s in SKILLS), (Q(6, 5), Q(2)))

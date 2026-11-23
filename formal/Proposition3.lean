@@ -22,7 +22,9 @@ theorem turningPoint_pos_and_zero
     0 < thetaStar ∧ a + 2 * thetaStar * q = 0 := by
   constructor
   · rw [hstar]
-    positivity
+    have hn : (0 : ℝ) < -a := neg_pos.mpr ha
+    have hd : (0 : ℝ) < 2 * q := mul_pos (by norm_num) hq
+    exact div_pos hn hd
   · rw [hstar]
     field_simp [ne_of_gt hq]
     ring
@@ -41,7 +43,7 @@ theorem gainVariance_strictMono
     q * theta₁ ^ 2 < q * theta₂ ^ 2 := by
   have h₂ : 0 < theta₂ := lt_of_le_of_lt h₁ hθ
   have hsquare : theta₁ ^ 2 < theta₂ ^ 2 := by nlinarith
-  exact (mul_lt_mul_left hq).2 hsquare
+  exact mul_lt_mul_of_pos_left hsquare hq
 
 /-- Exact derivative at tool quality one for the two-skill algebraic case. -/
 theorem twoType_derivative_at_one :
