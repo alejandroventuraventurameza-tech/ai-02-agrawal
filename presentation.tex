@@ -146,48 +146,36 @@
 \end{frame}
 
 %================= 4. AI CHECK ========================================
-\begin{frame}{4 \textperiodcentered{} I checked the AI's example, not just its algebra}
+\begin{frame}{4 \textperiodcentered{} I checked the AI's example by hand}
   \begin{columns}[T,onlytextwidth]
-    \column{0.47\textwidth}
-    \textbf{The recorded AI answer}
-    {\small Claimed an admissible counterexample after
-    checking (H) and interiority (see \texttt{prompts.md}).}
+    \column{0.35\textwidth}
+    \textbf{Recorded AI claim}
+    {\small An admissible counterexample, after checking
+    heterogeneity and effort interiority.}
 
     \medskip
-    \textbf{Three independent checks}
+    \textbf{My checks}
     \begin{itemize}\small
-      \item (H) holds, yet $\operatorname{Var}'(1)=-14/45$.
-      A reversal at 1 needs $\theta^*<1$.
-      \item $p^*=2s\in\{1.2,2\}>1$:
+      \item $\operatorname{Var}'(1)=-14/45<0$.
+      \item $p^*=2s\in\{6/5,2\}>1$:
       not a probability.
-      \item The corner $1.44$ comes before the
-      algebraic turn $2.4$.
+      \item The first effort corner $1.44$ precedes
+      the algebraic turn $2.4$.
     \end{itemize}
 
     \begin{alertblock}{Verdict}
-      \small\textbf{Incorrect as a probability model};
-      its algebra is valid, but its calibration is not.
+      \small\textbf{Algebra correct, probability
+      example inadmissible.} The missing check
+      changes the economic interpretation.
     \end{alertblock}
 
-    \column{0.49\textwidth}
-    \textbf{Handwritten audit (page 4 of 4)}
+    \column{0.62\textwidth}
+    \textbf{Original handwritten check: page 4 of 4}
 
-    \IfFileExists{hand/prop3-derivation.jpg}{
-      \includegraphics[width=\linewidth,height=0.59\textheight,keepaspectratio]
+    \includegraphics[width=\linewidth,height=0.68\textheight,keepaspectratio]
       {hand/prop3-derivation.jpg}
 
-      {\scriptsize\color{gray}Original full derivation: \texttt{hand/prop3-handwritten-full.pdf}}
-    }{
-      \IfFileExists{hand/prop3-derivation.png}{
-        \includegraphics[width=\linewidth,height=0.53\textheight,keepaspectratio]
-        {hand/prop3-derivation.png}
-      }{
-        \fbox{\parbox[c][0.45\textheight][c]{0.92\linewidth}{\centering
-          \textbf{Add the real phone photo here}\\[0.7em]
-          \texttt{hand/prop3-derivation.jpg}\\[0.7em]
-          FOC $\to e^*$ $\to$ interior condition $\to$ variance derivative.}}
-      }
-    }
+    {\scriptsize\color{gray}Complete four-page original: \texttt{hand/prop3-handwritten-full.pdf}}
   \end{columns}
   \sourcefoot
 \end{frame}
