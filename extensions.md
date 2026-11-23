@@ -34,13 +34,12 @@ $$
 qualities. The aggregate variance is no longer one global quadratic, so the
 number and location of turning points become distribution-dependent.
 
-This is a correction, not a new economic mechanism. It should be done before
-claiming any global U-shape.
+This corrects the algebraic effort boundary, not the original probability model. The source's square-root implementation function itself conflicts with the stipulated probability bound at positive effort and theta=1; see [the primary-source audit](SOURCE_AUDIT.md).
 
 ## 2. Correlated skill and judgment
 
 Our interior baseline assumes mutual independence of $\alpha$, $\gamma_0$, $\gamma$, and
-$s$. The exact placement of this assumption in the published version is pending primary-PDF comparison. Relax this by specifying a joint distribution for $(\Gamma,\alpha,s)$.
+$s$. Section 4 (printed p. 18) explicitly states independence of the four skill and judgment variables in the primary 2025 PDF. Relax this by specifying a joint distribution for $(\Gamma,\alpha,s)$.
 The value equation is unchanged:
 
 $$
@@ -119,7 +118,7 @@ The script reports two findings that should not be conflated:
    of value variance at $\theta=1$. The implication from the inequality alone
    is therefore insufficient **within the algebra**. The example has
    $p^*>1$ and is **not** a valid literal success-probability model;
-   no unverified source equation number is asserted.
+   the source's exact equations (30), (32), (58) and (81) are now verified against the original July 2025 PDF.
 2. In the interior region, the variance of the individual tool benefit is
    $\theta^2\operatorname{Var}(\Gamma/s)$ and therefore increases monotonically.
 

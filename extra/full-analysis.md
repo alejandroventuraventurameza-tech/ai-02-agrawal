@@ -1,3 +1,5 @@
+> **Historical snapshot.** This analysis predates direct inspection of the original 53-page July 2025 PDF. Earlier source-access warnings are superseded by [SOURCE_AUDIT.md](../SOURCE_AUDIT.md), which verifies original equations (30), (32), (58), and (81) and records three exact domain/sign discrepancies.
+
 <!-- Extended analysis archived from main on 2026-11-23; concise README is the entrypoint. -->
 
 # Repository 2 — Agrawal, Gans & Goldfarb (2025)
