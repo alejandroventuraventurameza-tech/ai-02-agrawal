@@ -6,6 +6,8 @@ on:
       - audit/issue-1-finalization-20261122
     paths:
       - "presentation.tex"
+      - "sim.py"
+      - "requirements.txt"
       - "hand/**"
       - "figures/prop3-variance-audit.png"
       - "tests/**"
@@ -29,6 +31,10 @@ jobs:
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
             texlive-latex-base texlive-latex-recommended texlive-latex-extra \
             texlive-fonts-recommended lmodern poppler-utils
+      - name: Reproduce figures from source
+        run: |
+          python3 -m pip install --quiet -r requirements.txt
+          python3 sim.py
       - name: Compile Beamer source
         run: |
           pdflatex -interaction=nonstopmode -halt-on-error -file-line-error presentation.tex
@@ -65,7 +71,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f presentation.pdf preview/beamer-contact-sheet.png
+          git add -f presentation.pdf figures/prop3-slide-audit.png figures/prop3-variance-audit.png preview/beamer-contact-sheet.png
           if ! git diff --cached --quiet; then
             git commit -m "build: refresh compiled Beamer PDF"
             git push origin HEAD:audit/issue-1-finalization-20261122

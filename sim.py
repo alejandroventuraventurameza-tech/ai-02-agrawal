@@ -229,6 +229,41 @@ def make_figure(output: Path, results: dict[str, float]) -> None:
     plt.close(fig)
 
 
+def make_slide_figure(output: Path) -> None:
+    """One readable panel for the five-minute Beamer deck.
+
+    The three-panel extended audit remains available separately. This chart
+    shows an algebraic example, NOT a probability-calibrated model.
+    """
+    output.parent.mkdir(parents=True, exist_ok=True)
+    theta = np.linspace(0.0, 1.0, 401)
+    values = variance(interior_value(theta))
+    fig, ax = plt.subplots(figsize=(7.2, 4.2))
+    ax.plot(theta, values, color="#183153", linewidth=3.5)
+    ax.scatter([1.0], [values[-1]], color="#d1495b", s=55, zorder=4)
+    ax.annotate(
+        r"$d\,\mathrm{Var}(V)/d\theta|_{\theta=1}=-14/45$",
+        xy=(1.0, values[-1]),
+        xytext=(0.32, 0.36),
+        textcoords="axes fraction",
+        fontsize=13,
+        color="#9c2333",
+        arrowprops={"arrowstyle": "->", "color": "#9c2333", "lw": 1.5},
+    )
+    ax.set_xlabel(r"Tool quality $\theta$", fontsize=14)
+    ax.set_ylabel(r"Cross-sectional $\mathrm{Var}(V(\theta))$", fontsize=13)
+    ax.set_title("Value variance continues to fall on [0, 1]", fontsize=14)
+    ax.text(
+        0.025, 0.055,
+        r"Algebraic illustration only: $p^*>1$",
+        transform=ax.transAxes, fontsize=10, color="#555555",
+    )
+    ax.grid(alpha=0.2)
+    fig.tight_layout(pad=1.1)
+    fig.savefig(output, dpi=180, bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -236,6 +271,12 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=Path("figures/prop3-variance-audit.png"),
         help="Path for the generated PNG figure.",
+    )
+    parser.add_argument(
+        "--slide-output",
+        type=Path,
+        default=Path("figures/prop3-slide-audit.png"),
+        help="Readable one-panel figure for the Beamer presentation.",
     )
     parser.add_argument(
         "--no-plot",
@@ -252,6 +293,8 @@ def main() -> None:
     if not args.no_plot:
         make_figure(args.output, results)
         print(f"figure: {args.output.resolve()}")
+        make_slide_figure(args.slide_output)
+        print(f"slide figure: {args.slide_output.resolve()}")
 
 
 if __name__ == "__main__":
