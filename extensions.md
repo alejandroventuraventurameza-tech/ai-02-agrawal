@@ -52,7 +52,7 @@ but the derivative of the variance is most transparently written as
 
 $$
 \frac{d\operatorname{Var}(V)}{d\theta}
-=2\operatorname{Cov}\left(\Gamma K\alpha^2s,rac\Gamma s\right)
+=2\operatorname{Cov}\left(\Gamma K\alpha^2s,\frac\Gamma s\right)
 +2\theta\operatorname{Var}(\Gamma/s).
 $$
 
@@ -124,3 +124,24 @@ The script reports two findings that should not be conflated:
 It also plots the constrained corner solution against the interior extrapolation
 to show where the quadratic argument ceases to describe the model.
 
+
+
+## 6. Probability-bounded alternative — solved analytically
+
+To repair the literal probabilistic interpretation rather than extrapolate
+the unbounded square root, replace only the success primitive by
+\(p(se;\theta)=\min\{1,\sqrt{se+\theta}\}\) and use
+\(\alpha=\Gamma=1\), \(\Delta=2\), \(s\in\{3/5,1\}\)
+with equal probabilities. This new model has \(p\in[0,1]\)
+everywhere, including off the optimum. The optimal value gap is
+\(D=2/5-2\theta/3\) up to \(\theta=9/25\),
+\(D=(1-\sqrt\theta)^2\) on \([9/25,1]\), and zero
+above one. Hence inequality of **levels** falls while inequality of
+**gains** rises; neither has a global U-shape in this illustrative case.
+
+See [the complete proof](extra/bounded-probability-variant.md),
+[reproducible script](bounded_model.py) and
+[exact-rational tests](tests/test_bounded_model.py). This is our
+extension, not a theorem attributed to the paper. Capping introduces
+nondifferentiability and a flat region, so its strict marginal effects
+are not assumed to match the source model globally.

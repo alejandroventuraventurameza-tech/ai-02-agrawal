@@ -173,3 +173,135 @@ to obtain $V(\theta)$, differentiate the variance, and circle the logical gap:
 $a_0<0$ implies $\theta^*>0$ but not $\theta^*<1$. On the same page derive the
 variance of $V(\theta)-V(0)$ to show it is a different object. Add the phone
 photo as `hand/prop3-derivation.jpg`.
+
+
+---
+
+## Additional live exchange — 2026-11-22 (verbatim relevant excerpts)
+
+### User
+
+Ahora, necesito que hagamos este issue [https://github.com/alexanderquispe/AI-Econ-Modeling/issues/1](https://github.com/alexanderquispe/AI-Econ-Modeling/issues/1)
+
+### User
+
+Ok, empecemos entonces
+
+### Assistant (mathematical derivation as actually given)
+
+Tomemos el ejemplo del repositorio, con dos habilidades de implementación igualmente probables:
+
+\[
+s\in\left\{\frac35,1\right\},\qquad
+\alpha=1,\quad \Delta=4,\quad\Gamma=1.
+\]
+
+En la región de solución interior, el valor de cada agente es
+
+\[
+V(\theta,s)=4s+\frac{\theta}{s}.
+\]
+
+Esto nos da:
+
+\[
+V_L(\theta)=\frac{12}{5}+\frac{5\theta}{3},
+\qquad
+V_H(\theta)=4+\theta.
+\]
+
+Como ambos tipos tienen probabilidad \(1/2\), la varianza poblacional equivale al cuadrado de la diferencia entre sus valores dividido entre cuatro:
+
+\[
+\operatorname{Var}(V(\theta))
+=\frac14\left(\frac85-\frac{2\theta}{3}\right)^2.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\frac{d\operatorname{Var}(V(\theta))}{d\theta}
+=-\frac8{15}+\frac{2\theta}{9}
+}
+\]
+
+Al evaluar en \(\theta=1\):
+
+\[
+\boxed{
+\left.\frac{d\operatorname{Var}(V)}{d\theta}\right|_{\theta=1}
+=-\frac{14}{45}<0
+}
+\]
+
+**Interpretación económica:** la herramienta beneficia proporcionalmente más al trabajador con menor habilidad de implementación, por lo que inicialmente comprime la distancia entre ambos. Pero eso no garantiza que la distancia comience a ampliarse antes de \(\theta=1\).
+
+Además, el punto de giro de esta expresión es \(\theta^*=2.4\), mientras que el primer trabajador deja de tener esfuerzo interior en \(\theta=1.44\). Por ello, el giro calculado no puede extrapolarse directamente al problema restringido.
+
+Esta es una demostración que podemos reproducir a mano y contrastar con Lean. Hay que conservar la advertencia adicional: el ejemplo es un contraejemplo **algebraico** y su índice de éxito supera 1, por lo que no constituye una parametrización válida de una probabilidad acotada.
+
+### Assistant (later correction, relevant excerpt)
+
+Lean ya descargó y preparó Mathlib, y el compilador llegó a las demostraciones. Detectó dos fallos en los *tactics* —uno de positividad y otro de multiplicación por una cantidad positiva—, no en las identidades económicas que estamos comprobando. Los corregiré explícitamente y volveré a ejecutar la prueba; así evitamos aceptar una demostración que dependa de `sorryAx`.
+
+*The above preserves selected actual messages, including an intermediate failed Lean check. It is not a complete export of tool calls or of the whole conversation.*
+
+
+## Later audit of the preserved raw AI answer (2026-11-22)
+
+The original assistant answer to the prompt demanding a counterexample
+satisfying every listed condition correctly checked the heterogeneity
+inequality and effort interiority. It failed to check that
+p*=alpha*Delta*s/2 is within [0,1]: the example has p*=6/5 and 2.
+Thus the answer's claim of a fully admissible probability model is
+incorrect, despite correct algebra. The original answer remains
+unmodified earlier in this raw transcript. The AI's separate answer
+about the U-shape was already conditional; this audit does not invent
+an unqualified quotation.
+
+
+## User — 2026-11-22 (continuation)
+
+Sigue
+
+## Assistant — relevant mathematical proposal in the live response
+
+Encontré una mejora importante para fortalecer el repositorio: podemos
+construir una versión del modelo en la que la probabilidad de éxito
+nunca supere 1, corrigiendo una de las limitaciones de nuestro ejemplo
+anterior.
+
+\[
+p(se;\theta)=\min\{1,\sqrt{se+\theta}\},\qquad c(e)=e,
+\]
+
+con \(\alpha=\Gamma=1\), \(\Delta=2\) y dos tipos de trabajadores
+igualmente probables: \(s\in\{0.6,1\}\).
+
+El esfuerzo óptimo propuesto es
+\(e^*(\theta,s)=\max\{s-\theta/s,0\}\) para
+\(0\le\theta\le1\), y cero para \(\theta\ge1\).
+
+Nota de auditoría posterior: la versión con tope debe analizarse
+como una extensión, no atribuirse a la Proposición 3 original.
+El argumento formal por tramos está en
+`extra/bounded-probability-variant.md`.
+
+
+---
+
+## User — 23 November 2026 (attachment evidence)
+
+The user provided **`ai-02.pdf`**, an actual four-page handwritten
+derivation. There was no accompanying text prompt. We preserved
+the original PDF under `hand/prop3-handwritten-full.pdf` and
+rendered page 4 to `hand/prop3-derivation.jpg` for the slide.
+Do not describe the JPEG as an AI-generated or invented photograph.
+
+Assistant's verification: the interior effort FOC, value substitution
+and derivative are algebraically correct. The user's handwritten page 4
+catches the omitted probability-bound check
+\(p^*=\alpha\Delta s/2\in\{6/5,2\}>1\).
+This validates the documented critique **of the algebraic example**;
+it is not a page-by-page source verification of the NBER paper.

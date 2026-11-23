@@ -537,3 +537,50 @@ objeción de gusto; es una brecha algebraica reproducible.
 4. Distinga nivel total de beneficio individual.
 5. Cierre con el veredicto: U condicional; condición faltante en $\theta=1$;
    esquina omitida para herramientas muy buenas.
+
+
+## 13. Extensión exacta de este repositorio: la esquina elimina la U en el ejemplo
+
+Una vez imponemos \(e\ge0\), el óptimo de cada tipo es
+\(e^*(\theta,s)=\max\{4s-\theta/s,0\}\). Por tanto, el tipo
+\(s_L=3/5\) llega a la esquina en \(36/25=1.44\), mientras
+\(s_H=1\) llega a ella en \(\theta=4\).
+
+Sea \(D(\theta)=V_H(\theta)-V_L(\theta)\). Al sustituir el valor
+interior cuando el tipo trabaja y \(V_s(\theta)=4\sqrt{\theta}\)
+cuando tiene esfuerzo cero, obtenemos
+
+$$
+D(\theta)=
+\begin{cases}
+\frac85-\frac{2\theta}{3}, &0\le\theta\le36/25,\\
+(\sqrt{\theta}-2)^2,&36/25\le\theta\le4,\\
+0,&\theta\ge4.
+\end{cases}
+$$
+
+En el primer tramo, \(D'=-2/3\). En el segundo,
+\(D'=1-2/\sqrt\theta\le0\). Como \(D\ge0\),
+la varianza entre ambos tipos es \(D^2/4\): **cae hasta cero
+y después permanece constante**. El giro \(12/5\) pertenece
+solo a una extrapolación inválida de la fórmula interior.
+
+No ocurre lo mismo con la *dispersión de los beneficios individuales*.
+La diferencia inicial de valores es \(D(0)=8/5\), de modo que
+
+$$
+\operatorname{Var}\big(V(\theta)-V(0)\big)
+=\frac14\big(D(\theta)-8/5\big)^2.
+$$
+
+Esta última **aumenta hasta \(16/25\)** y luego permanece constante,
+aunque la dispersión de los niveles totales esté disminuyendo.
+La explicación es que el instrumento beneficia más al tipo
+inicialmente rezagado y termina igualando niveles, no ganancias.
+
+**Limitación indispensable:** al alcanzar el óptimo interior,
+\(p^*=\alpha\Delta s/2=2s\), de modo que \(p^*>1\)
+para ambos tipos. Este ejercicio es una extensión algebraica
+del índice \(\sqrt{se+\theta}\), no una calibración admisible
+de una verdadera probabilidad de éxito. Una normalización
+de \(p\) exige resolver nuevamente el problema.
