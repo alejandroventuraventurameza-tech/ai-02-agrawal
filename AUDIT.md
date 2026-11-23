@@ -30,7 +30,7 @@ The existing simulation and figure use NumPy and Matplotlib:
 
 ## Presentation
 
-Source: \`presentation.tex\`. Generated output: \`presentation.pdf\`.
+Source: `presentation.tex`. Generated output: `presentation.pdf`.
 The follow-up GitHub Action runs exact-rational tests, compiles the five-slide
 Beamer deck, and commits the resulting PDF on the audit branch when writable.
 The PDF must be checked against the latest source before merging.
@@ -98,13 +98,18 @@ sign inference.
 We do not invent a raw unconditional U-shaped AI statement:
 the logged answer to that separate question was already nuanced.
 
-## Not certified
+## Verified Lean certificate (2026-11-22)
 
-- **Handwritten evidence:** \`hand/prop3-derivation.jpg\` is not present.
+[GitHub Actions run 45104051271](https://github.com/alejandroventuraventurameza-tech/ai-02-agrawal/actions/runs/45104051271) returned **success** for `formal/Proposition3.lean` at revision `df2b7d81023b78626238935a2727ff8f2c9b04ce`, with Lean `4.30.0-rc2` and pinned Mathlib. All six `#print axioms` outputs contain only `propext`, `Classical.choice`, and `Quot.sound`; none contains `sorryAx`. This is a formal certificate for the encoded *algebraic lemmas only*, not the full published proposition or the validity of the probability primitive.
+
+## Outstanding obligations
+
+- **Handwritten evidence:** `hand/prop3-derivation.jpg` is not present.
   Only a genuinely handwritten photograph supplied by the student can
   satisfy that requirement; a typeset equation or AI image cannot.
-- **Lean:** \`formal/Proposition3.lean\` is an EconCSLib-compatible *draft*.
-  It has not been compiled here; no formal proof certificate is asserted.
+- **Full-model Lean formalization:** six downstream algebraic theorems compile,
+  but the original stochastic optimization, independence hypotheses, and
+  source-to-Lean correspondence are **not formalized**.
 - **Source verification:** the original NBER working-paper text requires a
   page-by-page primary-document check when accessible, especially the precise
   domain assumptions on \(p\) and \(\theta\).

@@ -58,7 +58,7 @@ pdflatex -interaction=nonstopmode -halt-on-error presentation.tex
 ```
 
 - [Raw interactions](prompts.md) · [Numerical code](sim.py) · [Full figure](figures/prop3-variance-audit.png) · [Slide preview](preview/beamer-contact-sheet.png).
-- [Lean algebraic proofs](formal/Proposition3.lean): version-pinned, **not** a formalization of the full economic model; check [Lean CI](../../actions) for actual compiler status.
+- [Lean algebraic proofs](formal/Proposition3.lean): six statements **compiled without `sorryAx`** ([CI certificate](https://github.com/alejandroventuraventurameza-tech/ai-02-agrawal/actions/runs/45104051271)); not a proof of the full economic model.
 - [Five-minute Beamer](presentation.tex) and [compiled PDF](presentation.pdf) (title + four slides).
 - **Required human evidence still missing:** a genuine photograph `hand/prop3-derivation.jpg`; see [instructions](hand/README.md). No fabricated handwriting is included.
 - Repository is private; ensure instructor `alexanderquispe` has read access before registering the link. The original August 25, 2026 deadline is historical and cannot be changed.
