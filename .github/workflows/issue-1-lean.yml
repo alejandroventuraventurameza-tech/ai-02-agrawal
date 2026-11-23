@@ -1,0 +1,36 @@
+name: Lean 4 Proposition 3 check
+
+on:
+  push:
+    branches: [audit/issue-1-finalization-20261122]
+    paths:
+      - "formal/**"
+      - "lakefile.toml"
+      - "lean-toolchain"
+      - ".github/workflows/issue-1-lean.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  algebra:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: true
+      - name: Check all algebraic theorems
+        run: |
+          lake env lean formal/Proposition3.lean
+      - name: Reject proof holes
+        run: |
+          if grep -nE '^[[:space:]]*(sorry|admit)([[:space:]]|$)' formal/Proposition3.lean; then
+            echo "Unexpected proof hole"; exit 1
+          fi
