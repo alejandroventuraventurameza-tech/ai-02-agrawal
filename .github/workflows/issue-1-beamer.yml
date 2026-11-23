@@ -24,75 +24,20 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+      - name: Verify exact variance identities
+        run: python -m unittest discover -s tests -v
+      - name: Install minimal Beamer toolchain
+        run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended lmodern poppler-utils
       - name: Verify handwritten source integrity
         run: |
           test -s hand/prop3-derivation.jpg
           test -s hand/prop3-handwritten-full.pdf
           sha256sum -c hand/SHA256SUMS
-          pdfinfo hand/prop3-handwritten-full.pdf | grep 'Pages:' | grep -q '4'
-      - name: Verify exact variance identities
-        run: python -m unittest discover -s tests -v
-      - name: Install minimal Beamer toolchain
-        run: |
-          sudo apt-get update -qq
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
-            texlive-fonts-recommended lmodern poppler-utils
-      - name: Reproduce figures from source
-        run: |
-          python3 -m pip install --quiet -r requirements.txt
-          python3 sim.py
-          python3 bounded_model.py
-      - name: Compile Beamer source
-        run: |
-          pdflatex -interaction=nonstopmode -halt-on-error -file-line-error presentation.tex
-          pdflatex -interaction=nonstopmode -halt-on-error -file-line-error presentation.tex
-          test -s presentation.pdf
-          pdfinfo presentation.pdf | grep -E '^Pages:[[:space:]]+5$'
-      - name: Render slide previews for visual QA
-        run: |
-          python3 -m pip install --quiet pillow
-          mkdir -p preview
-          pdftoppm -f 1 -l 5 -r 100 -png presentation.pdf preview/_slide
-          python3 - <<'PY'
-          from pathlib import Path
-          from PIL import Image, ImageOps
-          images = []
-          for path in sorted(Path("preview").glob("_slide-*.png")):
-              with Image.open(path) as pic:
-                  images.append(pic.convert("RGB"))
-          assert len(images) == 5, f"Expected 5 slides, got {len(images)}"
-          width = max(image.width for image in images)
-          height = max(image.height for image in images)
-          margin = 24
-          sheet = Image.new("RGB", (2*width + 3*margin, 3*height + 4*margin), "white")
-          for i, image in enumerate(images):
-              x = margin + (i % 2) * (width + margin)
-              y = margin + (i // 2) * (height + margin)
-              sheet.paste(image, (x, y))
-          sheet.save("preview/beamer-contact-sheet.png", optimize=True)
-          for path in Path("preview").glob("_slide-*.png"):
-              path.unlink()
-          PY
-      - name: Commit refreshed PDF to audit branch
-        if: github.event_name == 'push'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f presentation.pdf figures/prop3-bounded-success.png figures/prop3-slide-audit.png figures/prop3-variance-audit.png preview/beamer-contact-sheet.png
-          if ! git diff --cached --quiet; then
-            git commit -m "build: refresh compiled Beamer PDF"
-            git push origin HEAD:audit/issue-1-finalization-20261122
-          fi
-
-      - name: Verify exact variance identities
-        run: python -m unittest discover -s tests -v
-      - name: Install minimal Beamer toolchain
-        run: |
-          sudo apt-get update -qq
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
-            texlive-fonts-recommended lmodern poppler-utils
+          pdfinfo hand/prop3-handwritten-full.pdf | grep -q '^Pages:[[:space:]]*4'
       - name: Reproduce figures from source
         run: |
           python3 -m pip install --quiet -r requirements.txt
