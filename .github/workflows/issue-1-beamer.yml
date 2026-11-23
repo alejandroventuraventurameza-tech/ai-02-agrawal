@@ -4,7 +4,12 @@ on:
   push:
     branches:
       - audit/issue-1-finalization-20261122
+      - audit/issue-1-editorial-source-20261123
     paths:
+      - "README.md"
+      - "SOURCE_AUDIT.md"
+      - "AUDIT.md"
+      - "extra/**"
       - "presentation.tex"
       - "sim.py"
       - "bounded_model.py"
@@ -13,6 +18,8 @@ on:
       - "figures/prop3-variance-audit.png"
       - "tests/**"
       - ".github/workflows/issue-1-beamer.yml"
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -82,5 +89,5 @@ jobs:
           git add -f presentation.pdf figures/prop3-bounded-success.png figures/prop3-slide-audit.png figures/prop3-variance-audit.png preview/beamer-contact-sheet.png
           if ! git diff --cached --quiet; then
             git commit -m "build: refresh compiled Beamer PDF"
-            git push origin HEAD:audit/issue-1-finalization-20261122
+            git push origin "HEAD:${GITHUB_REF_NAME}"
           fi

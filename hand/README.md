@@ -13,8 +13,8 @@ following two files preserve the evidence:
 Page 4 was rendered with PyMuPDF at scale 1.65, RGB, then saved as a
 high-quality JPEG (quality 81, no cropping or annotations added).
 It is an image of original tablet/digital handwriting, **not a claim
-that a physical camera took a photograph of paper**. A literal phone
-photo may still be requested if the instructor distinguishes the two.
+that a physical camera took a photograph of paper**. The student confirms the instructor **accepted this digital handwritten evidence**;
+a separate camera photograph is therefore not treated as an outstanding requirement.
 
 ## Audited contents of the original PDF
 

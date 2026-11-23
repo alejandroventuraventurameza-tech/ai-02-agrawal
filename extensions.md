@@ -39,8 +39,8 @@ claiming any global U-shape.
 
 ## 2. Correlated skill and judgment
 
-The paper assumes mutual independence of $\alpha$, $\gamma_0$, $\gamma$, and
-$s$. Relax this by specifying a joint distribution for $(\Gamma,\alpha,s)$.
+Our interior baseline assumes mutual independence of $\alpha$, $\gamma_0$, $\gamma$, and
+$s$. The exact placement of this assumption in the published version is pending primary-PDF comparison. Relax this by specifying a joint distribution for $(\Gamma,\alpha,s)$.
 The value equation is unchanged:
 
 $$
@@ -114,10 +114,12 @@ independence assumption is even approximately true.
 
 The script reports two findings that should not be conflated:
 
-1. A two-type population satisfying the paper's heterogeneity condition and all
-   listed support/moment restrictions can still have a **negative** derivative of
-   wage variance at $\theta=1$; condition (30) does not imply the paper's second
-   sign in equation (32).
+1. A two-type algebraic example satisfies the heterogeneity inequality and
+   the common interior condition on $[0,1]$, yet has a **negative** derivative
+   of value variance at $\theta=1$. The implication from the inequality alone
+   is therefore insufficient **within the algebra**. The example has
+   $p^*>1$ and is **not** a valid literal success-probability model;
+   no unverified source equation number is asserted.
 2. In the interior region, the variance of the individual tool benefit is
    $\theta^2\operatorname{Var}(\Gamma/s)$ and therefore increases monotonically.
 

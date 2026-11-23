@@ -78,11 +78,13 @@
 \end{frame}
 
 %================= 2. MAIN RESULT =====================================
-\begin{frame}{2 \textperiodcentered{} Proposition 3 is conditional, not a slogan}
+\begin{frame}{2 \textperiodcentered{} The variance claim needs its domain}
   \small
-  \textbf{Additional assumptions:}
-  $p(se;\theta)=\sqrt{se+\theta}$, $c(e)=e$; mutually independent positive
-  $(\alpha,\gamma_0,\gamma,s)$; $\delta\gamma<1$; and an interior optimum.
+  \textbf{Proposition 3: audited interior specialization.}
+  $p(se;\theta)=\sqrt{se+\theta}$, $c(e)=e$, $\Delta>0$,
+  positive independent $(\alpha,\gamma_0,\gamma,s)$,
+  $\delta\gamma<1$, finite moments. Require
+  $\theta<\alpha^2\Delta^2s^2/4$ \emph{for every type}.
 
   \[
     V(\theta)=\Gamma\left(\frac{\alpha^2\Delta^2s}{4}+\frac{\theta}{s}\right),
@@ -91,24 +93,25 @@
 
   \begin{columns}[T,onlytextwidth]
     \column{0.47\textwidth}
-    \textbf{Heterogeneity threshold}
+    \textbf{Heterogeneity restriction}
     \[
       \frac{E[\Gamma^2]}{E[\Gamma]^2}<E[s]E[1/s].
     \]
-    It makes the initial variance slope negative.
+    This implies $a_0<0$: an initial fall
+    in \emph{level} variance.
 
     \column{0.49\textwidth}
-    \textbf{Exact derivative}
+    \textbf{Exact interior derivative}
     \[
-      \frac{d\operatorname{Var}(V)}{d\theta}
-      =a_0+2\theta\operatorname{Var}(\Gamma/s).
+      \operatorname{Var}'(V)=a_0+2\theta q,
+      \quad q=\operatorname{Var}(\Gamma/s).
     \]
-    It turns at $\theta^*=-a_0/[2\operatorname{Var}(\Gamma/s)]$.
+    If $q>0$, $\theta^*=-a_0/(2q)>0$.
   \end{columns}
 
-  \begin{alertblock}{Condition missing from the published statement}
-    A positive slope at $\theta=1$ additionally requires $\theta^*<1$.
-    The threshold above proves only $\theta^*>0$.
+  \begin{alertblock}{Additional requirements for a positive slope at $\theta=1$}
+    \small $\theta^*<1$ \textbf{and} every type still interior at $1$.
+    This is an independent algebraic check, not a certified textual erratum.
   \end{alertblock}
   \sourcefoot
 \end{frame}

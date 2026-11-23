@@ -1,3 +1,7 @@
+## Current closure addendum (23 November 2026)
+
+The student reports the instructor has accepted both (i) the submission extension and (ii) the digital handwritten evidence. These are treated as **satisfied administrative requirements**, not blockers. The repository was already merged into main via PR #2; this follow-up limits itself to editorial quality and accurate source provenance. The outstanding scholarly check is a page-specific comparison with the instructor's original PDF; a mathematical identity proof cannot substitute for that source examination.
+
 # Issue #1: follow-up audit and release boundaries
 
 Date: 2026-11-22. This note documents checks without claiming a
@@ -178,18 +182,15 @@ JPEG SHA-256: `1eab251ec0a7825ce132d71e4cb627b6acc7c85bc23b878b4bc527089c9941a1`
 
 [GitHub Actions run #45117487008](https://github.com/alejandroventuraventurameza-tech/ai-02-agrawal/actions/runs/45117487008) completed **successfully** on the photo-inclusive Beamer source (commit `53c273bf6c77202de04ad748f374ca897453f3b0`). It checked both handwriting SHA-256 files, the four-page manuscript count, ten Python tests, chart regeneration, five-slide PDF compilation and preview generation. The rendered slide 4 was reviewed visually with the original handwriting enlarged and with the extraneous page footer removed.
 
-## Outstanding obligations
+## Verified instructor accommodations and remaining research scope
 
-- **Handwritten evidence:** four-page user-supplied annotated manuscript stored as `hand/prop3-handwritten-full.pdf` and an image of page 4 stored as `hand/prop3-derivation.jpg`; both SHA-256 hashes are recorded in `hand/SHA256SUMS`. This is a rendered image of the original handwritten PDF, **not** an asserted camera photograph of paper. If the instructor requires a literal camera photograph, that separate condition must be checked.
+- **Handwritten evidence:** provided as an authentic four-page iPad manuscript in `hand/` and reproduced on slide 4. The student confirms the instructor **accepted this digital format**, so it is **not an outstanding delivery blocker**. The provenance and hashes remain preserved.
 - **Full-model Lean formalization:** six downstream algebraic theorems compile,
   but the original stochastic optimization, independence hypotheses, and
   source-to-Lean correspondence are **not formalized**.
-- **Source verification:** the original NBER working-paper text requires a
-  page-by-page primary-document check when accessible, especially the precise
-  domain assumptions on \(p\) and \(\theta\).
+- **Source verification:** publisher and course metadata are checked; exact Proposition 3 wording still requires the instructor's 53-page source PDF. See [SOURCE_AUDIT.md](SOURCE_AUDIT.md). No equation number or authorial erratum is asserted as textually verified.
 - **Instructor access:** GitHub reports `alexanderquispe` has `read` permission on the private repository (checked 23 November 2026). This requirement is satisfied.
-- **Deadline:** the August 25, 2026 submission time is historical and cannot
-  be reconstructed by a later PR or issue comment.
+- **Deadline:** the student confirms the instructor granted an **extension for this submission**; the repository retains the original August deadline as historical metadata without attempting to backdate the commits.
 
 The preceding statements deliberately distinguish exact algebraic proof,
 reproducible numerical code, and outstanding evidence.
