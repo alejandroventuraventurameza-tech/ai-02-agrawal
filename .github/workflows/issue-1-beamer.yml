@@ -29,7 +29,8 @@ jobs:
           test -s hand/prop3-derivation.jpg
           test -s hand/prop3-handwritten-full.pdf
           sha256sum -c hand/SHA256SUMS
-          pdfinfo hand/prop3-handwritten-full.pdf | grep -E '^Pages:[[:space:]]+4
+          pdfinfo hand/prop3-handwritten-full.pdf | grep 'Pages:' | grep -q '4'
+      - name: Verify exact variance identities
         run: python -m unittest discover -s tests -v
       - name: Install minimal Beamer toolchain
         run: |
