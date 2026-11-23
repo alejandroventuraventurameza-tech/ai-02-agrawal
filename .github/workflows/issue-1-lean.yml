@@ -19,17 +19,20 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-      - uses: leanprover/lean-action@v1
-        with:
-          auto-config: false
-          build: false
-          test: false
-          lint: false
-          use-mathlib-cache: true
-      - name: Check all algebraic theorems
+      - name: Install pinned Lean 4 toolchain
         run: |
-          lake env lean formal/Proposition3.lean
-      - name: Reject proof holes
+          curl --fail --silent --show-error https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh |
+            sh -s -- -y --default-toolchain none --no-modify-path
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          "$HOME/.elan/bin/lean" --version
+          "$HOME/.elan/bin/lake" --version
+      - name: Fetch pinned Mathlib dependencies
+        run: |
+          lake update
+          lake exe cache get
+      - name: Check all exact algebraic theorems
+        run: lake env lean formal/Proposition3.lean
+      - name: Reject executable proof holes
         run: |
           if grep -nE '^[[:space:]]*(sorry|admit)([[:space:]]|$)' formal/Proposition3.lean; then
             echo "Unexpected proof hole"; exit 1
