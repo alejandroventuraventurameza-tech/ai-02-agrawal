@@ -145,11 +145,38 @@ conditional on the functional forms transcribed in the repository.
 
 [GitHub Actions #45111360008](https://github.com/alejandroventuraventurameza-tech/ai-02-agrawal/actions/runs/45111360008) completed successfully on the capped-model code at commit `a18e286f69cda9759b2a0e2f5ff2102f8963308a`. Its Python stage reported **10 passing tests**, including exact-rational checks of all three capped-model regions. The script checked numerical agreement of the level/gain variance curves with the analytical functions, and the Beamer workflow produced a verified **five-page PDF** and the regenerated chart. These are numerical/reproducibility receipts; the monotonicity argument depends on the separate analytic proof, not on sampling alone.
 
+## New authentic handwritten evidence received (23 November 2026)
+
+The user supplied `ai-02.pdf`, four pages of handwritten mathematical work.
+We preserved the **original uploaded PDF bytes**, renamed only to
+`hand/prop3-handwritten-full.pdf`. For slide 4 we rendered original
+PDF page 4 directly to `hand/prop3-derivation.jpg` with no generated
+handwriting, added annotations or content changes.
+
+- **Page 1:** \(M(e)=\alpha\Delta\sqrt{se+\theta}-e\); FOC,
+  \(e^*=\alpha^2\Delta^2 s/4-\theta/s\); interiority bound.
+- **Page 2:** \(M^*=\alpha^2\Delta^2s/4+\theta/s\),
+  \(V=\Gamma M^*\) and variance decomposition \(V=X+\theta Y\).
+- **Page 3:** \(\operatorname{Var}'(V)=a_0+2\theta\operatorname{Var}(\Gamma/s)\);
+  \(a_0<0\) only gives a positive algebraic turning point, and
+  \(\operatorname{Var}'(1)>0\) would additionally require \(\theta^*<1\).
+- **Page 4:** \(\alpha=1,\Delta=4,\Gamma=1,s\in\{3/5,1\}\),
+  giving \(-8/15+2\theta/9\), turning point \(12/5\),
+  derivative \(-14/45\) at \(\theta=1\).
+  The author circles \(p^*\in\{6/5,2\}\) and explicitly notes
+  that this violates the literal probability range \([0,1]\).
+
+These steps are correct **inside the algebraic model's common
+interior region**. The handwritten notes do not purport to prove
+global validity under a bounded probability. The later capped
+model remains a distinct extension.
+
+PDF SHA-256: `f38c710d6099b81e6195667429f2369e7ac01f89e8f7d95129a8ded8141e71ee`.
+JPEG SHA-256: `1eab251ec0a7825ce132d71e4cb627b6acc7c85bc23b878b4bc527089c9941a1`.
+
 ## Outstanding obligations
 
-- **Handwritten evidence:** `hand/prop3-derivation.jpg` is not present.
-  Only a genuinely handwritten photograph supplied by the student can
-  satisfy that requirement; a typeset equation or AI image cannot.
+- **Handwritten evidence:** four-page user-supplied annotated manuscript stored as `hand/prop3-handwritten-full.pdf` and an image of page 4 stored as `hand/prop3-derivation.jpg`; both SHA-256 hashes are recorded in `hand/SHA256SUMS`. This is a rendered image of the original handwritten PDF, **not** an asserted camera photograph of paper. If the instructor requires a literal camera photograph, that separate condition must be checked.
 - **Full-model Lean formalization:** six downstream algebraic theorems compile,
   but the original stochastic optimization, independence hypotheses, and
   source-to-Lean correspondence are **not formalized**.

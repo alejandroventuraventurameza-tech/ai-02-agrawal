@@ -84,8 +84,8 @@ python bounded_model.py
 pdflatex -interaction=nonstopmode -halt-on-error presentation.tex
 ```
 
-- [Handwritten verification guide](hand/derivation-guide.md) · [Raw interactions](prompts.md) · [Numerical code](sim.py) · [Full figure](figures/prop3-variance-audit.png) · [Slide preview](preview/beamer-contact-sheet.png).
+- [Four-page handwritten proof](hand/prop3-handwritten-full.pdf) · [Page-4 image](hand/prop3-derivation.jpg) · [Verification guide](hand/derivation-guide.md) · [Raw interactions](prompts.md) · [Numerical code](sim.py) · [Full figure](figures/prop3-variance-audit.png) · [Slide preview](preview/beamer-contact-sheet.png).
 - [Lean algebraic proofs](formal/Proposition3.lean): six statements **compiled without `sorryAx`** ([CI certificate](https://github.com/alejandroventuraventurameza-tech/ai-02-agrawal/actions/runs/45104051271)); not a proof of the full economic model.
 - [Five-minute Beamer](presentation.tex) and [compiled PDF](presentation.pdf) (title + four slides).
-- **Required human evidence still missing:** a genuine photograph `hand/prop3-derivation.jpg`; see [instructions](hand/README.md). No fabricated handwriting is included.
+- **Handwritten derivation received and audited:** [complete original, four pages](hand/prop3-handwritten-full.pdf); [unretouched page-4 rasterization used on slide 4](hand/prop3-derivation.jpg). Pages 1–3 derive the FOC, interiority and variance; page 4 computes −14/45 and identifies the invalid probability values (6/5, 2). See [provenance and SHA-256 hashes](hand/README.md).
 - Repository is private; ensure instructor `alexanderquispe` has read access before registering the link. The original August 25, 2026 deadline is historical and cannot be changed.

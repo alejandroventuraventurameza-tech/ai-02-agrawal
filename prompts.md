@@ -287,3 +287,21 @@ Nota de auditoría posterior: la versión con tope debe analizarse
 como una extensión, no atribuirse a la Proposición 3 original.
 El argumento formal por tramos está en
 `extra/bounded-probability-variant.md`.
+
+
+---
+
+## User — 23 November 2026 (attachment evidence)
+
+The user provided **`ai-02.pdf`**, an actual four-page handwritten
+derivation. There was no accompanying text prompt. We preserved
+the original PDF under `hand/prop3-handwritten-full.pdf` and
+rendered page 4 to `hand/prop3-derivation.jpg` for the slide.
+Do not describe the JPEG as an AI-generated or invented photograph.
+
+Assistant's verification: the interior effort FOC, value substitution
+and derivative are algebraically correct. The user's handwritten page 4
+catches the omitted probability-bound check
+\(p^*=\alpha\Delta s/2\in\{6/5,2\}>1\).
+This validates the documented critique **of the algebraic example**;
+it is not a page-by-page source verification of the NBER paper.
